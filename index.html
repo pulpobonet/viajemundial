@@ -158,6 +158,11 @@
     letter-spacing:.12em;text-transform:uppercase;padding:.14rem .4rem;border-radius:2px;
     margin-left:.35rem;vertical-align:.12em}
   .pill.pend{background:var(--amber-soft);color:var(--amber)}
+  .ev figure{margin:.6rem 0 .2rem}
+  .ev figure img{width:100%;max-width:420px;display:block;border-radius:4px;
+    border:1px solid var(--line);background:var(--card)}
+  .ev figcaption{font-size:.74rem;color:var(--ink-2);margin-top:.3rem;font-style:italic}
+  .ev.done figure img{opacity:.92}
   .score{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--amber);
     font-size:.8rem;margin-top:.2rem}
 
@@ -624,7 +629,10 @@ function render(){
           `<div class="ev-time">${e.t}</div><div class="ev-body">`+
           `<p class="ev-title">${e.title}${e.pend?'<span class="pill pend">sin confirmar</span>':""}</p>`+
           (e.score?`<p class="score">${e.score}</p>`:"")+
-          (e.note?`<p class="ev-note">${e.note}</p>`:"")+`</div></div>`;
+          (e.note?`<p class="ev-note">${e.note}</p>`:"")+
+          (e.foto?`<figure><img loading="lazy" src="${e.foto}" alt="${e.pie||e.title}" onerror="this.closest('figure').remove()">`+
+            (e.pie?`<figcaption>${e.pie}</figcaption>`:"")+`</figure>`:"")+
+          `</div></div>`;
   });
   if(open) html+="</div>";
   timeline.innerHTML=html;

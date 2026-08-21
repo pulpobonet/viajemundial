@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "",
-  "hora": ""
+  "texto": "Llegando a Bilbao. Arranco por el Guggenheim.",
+  "hora": "11:05"
  },
  "eventos": [
   {
@@ -33,7 +33,8 @@
    "spot": "Laredo",
    "title": "Los Leones 7 · Nueva Zelanda 1",
    "score": "Hat-trick de Domene. Argentina clasificó a la segunda fase",
-   "note": "Visto por TV desde Laredo"
+   "note": "Visto por TV desde Laredo",
+   "foto": "fotos/leones-nz.jpg"
   },
   {
    "d": "2026-08-20",
@@ -42,7 +43,8 @@
    "zone": "norte",
    "spot": "Laredo",
    "title": "Llegada al alojamiento",
-   "note": "La Arenosa, Laredo. Llovió todo el día"
+   "note": "La Arenosa, Laredo. Llovió todo el día",
+   "foto": "fotos/laredo-lluvia.jpg"
   },
   {
    "d": "2026-08-21",
@@ -53,16 +55,54 @@
    "zone": "norte",
    "spot": "Bilbao",
    "title": "Laredo → Bilbao",
-   "note": "Bus de las 10:10"
+   "note": "Bus de las 10:10, 50 minutos por la costa. Llegada al Termibus",
+   "foto": "fotos/bus-laredo.jpg",
+   "pie": ""
   },
   {
    "d": "2026-08-21",
    "t": "11:00",
-   "dur": 330,
+   "dur": 100,
    "zone": "norte",
    "spot": "Bilbao",
-   "title": "Día en Bilbao",
-   "note": "Guggenheim, Casco Viejo y Mercado de la Ribera"
+   "title": "Estadio San Mamés",
+   "note": "La Catedral del Athletic, justo al lado de la estación. Primera parada sin buscarla",
+   "foto": "fotos/san-mames.jpg",
+   "pie": ""
+  },
+  {
+   "d": "2026-08-21",
+   "t": "13:10",
+   "dur": 95,
+   "zone": "norte",
+   "spot": "Bilbao",
+   "title": "Museo Guggenheim",
+   "note": "El titanio de Gehry sobre la ría. Afuera, Puppy y la araña de Louise Bourgeois. Adentro, La materia del tiempo de Richard Serra",
+   "foto": "fotos/guggenheim.jpg",
+   "pie": ""
+  },
+  {
+   "d": "2026-08-21",
+   "t": "14:45",
+   "dur": 25,
+   "zone": "norte",
+   "spot": "Bilbao",
+   "title": "Caminata por la ría",
+   "note": "Del Guggenheim al Casco Viejo bordeando el agua, pasando por el puente Zubizuri y el Ayuntamiento",
+   "foto": "fotos/ria.jpg",
+   "pie": ""
+  },
+  {
+   "d": "2026-08-21",
+   "t": "15:10",
+   "dur": 70,
+   "zone": "norte",
+   "spot": "Bilbao",
+   "title": "★ Casco Viejo en vísperas de la Aste Nagusia",
+   "score": "La Semana Grande de Bilbao arranca mañana: nueve días, 240 actos",
+   "note": "Toda la ciudad montando las txosnas y los escenarios. Marijaia sale al balcón del Arriaga mañana a las 19:00. Pintxos en la Plaza Nueva con el clima de fiesta armado pero sin el gentío",
+   "foto": "fotos/casco-viejo.jpg",
+   "pie": ""
   },
   {
    "d": "2026-08-21",
@@ -71,16 +111,18 @@
    "zone": "norte",
    "spot": "Laredo",
    "title": "Bilbao → Laredo",
-   "note": "Vuelta en bus"
+   "note": "Vuelta en bus desde el Termibus"
   },
   {
    "d": "2026-08-21",
-   "t": "18:00",
-   "dur": 180,
+   "t": "18:30",
+   "dur": 150,
    "zone": "norte",
    "spot": "Laredo",
    "title": "Bici por el paseo marítimo",
-   "note": "Playa de La Salvé hasta El Puntal, unos 12 km"
+   "note": "Playa de La Salvé hasta El Puntal, unos 12 km llanos con el atardecer sobre la bahía",
+   "foto": "fotos/laredo-bici.jpg",
+   "pie": ""
   },
   {
    "d": "2026-08-22",
