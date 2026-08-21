@@ -1,0 +1,332 @@
+{
+ "novedad": {
+  "texto": "",
+  "hora": ""
+ },
+ "eventos": [
+  {
+   "d": "2026-08-20",
+   "t": "02:15",
+   "dur": 235,
+   "day": "Jueves 20",
+   "place": "Madrid → Bilbao",
+   "zone": "norte",
+   "spot": "Madrid",
+   "title": "Bus de noche desde Madrid",
+   "note": "Salió de Barajas rumbo al norte"
+  },
+  {
+   "d": "2026-08-20",
+   "t": "07:00",
+   "dur": 50,
+   "zone": "norte",
+   "spot": "Laredo",
+   "title": "Bilbao → Laredo",
+   "note": "Segundo bus, 50 minutos"
+  },
+  {
+   "d": "2026-08-20",
+   "t": "12:30",
+   "dur": 105,
+   "match": true,
+   "zone": "norte",
+   "spot": "Laredo",
+   "title": "Los Leones 7 · Nueva Zelanda 1",
+   "score": "Hat-trick de Domene. Argentina clasificó a la segunda fase",
+   "note": "Visto por TV desde Laredo"
+  },
+  {
+   "d": "2026-08-20",
+   "t": "16:00",
+   "dur": 60,
+   "zone": "norte",
+   "spot": "Laredo",
+   "title": "Llegada al alojamiento",
+   "note": "La Arenosa, Laredo. Llovió todo el día"
+  },
+  {
+   "d": "2026-08-21",
+   "t": "10:10",
+   "dur": 50,
+   "day": "Viernes 21",
+   "place": "Laredo y Bilbao",
+   "zone": "norte",
+   "spot": "Bilbao",
+   "title": "Laredo → Bilbao",
+   "note": "Bus de las 10:10"
+  },
+  {
+   "d": "2026-08-21",
+   "t": "11:00",
+   "dur": 330,
+   "zone": "norte",
+   "spot": "Bilbao",
+   "title": "Día en Bilbao",
+   "note": "Guggenheim, Casco Viejo y Mercado de la Ribera"
+  },
+  {
+   "d": "2026-08-21",
+   "t": "17:00",
+   "dur": 50,
+   "zone": "norte",
+   "spot": "Laredo",
+   "title": "Bilbao → Laredo",
+   "note": "Vuelta en bus"
+  },
+  {
+   "d": "2026-08-21",
+   "t": "18:00",
+   "dur": 180,
+   "zone": "norte",
+   "spot": "Laredo",
+   "title": "Bici por el paseo marítimo",
+   "note": "Playa de La Salvé hasta El Puntal, unos 12 km"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "06:45",
+   "dur": 40,
+   "day": "Sábado 22",
+   "place": "España → Bélgica",
+   "zone": "norte",
+   "spot": "Laredo",
+   "title": "Salida de Laredo",
+   "note": "Con la mochila lista desde la noche anterior"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "07:25",
+   "dur": 50,
+   "zone": "norte",
+   "spot": "Bilbao",
+   "title": "Laredo → Bilbao",
+   "note": "Bus de las 7:25"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "08:30",
+   "dur": 25,
+   "zone": "norte",
+   "spot": "Bilbao",
+   "title": "Bus al aeropuerto",
+   "note": "Línea A3247 desde la estación"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "10:35",
+   "dur": 115,
+   "zone": "vuelo",
+   "title": "Vuelo a Bruselas",
+   "note": "Vueling. Aterriza 12:30 en Zaventem"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "13:20",
+   "dur": 105,
+   "zone": "belgica",
+   "spot": "Aeropuerto",
+   "title": "Tren hasta Waterloo",
+   "note": "Con transbordo en Bruselas"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "15:05",
+   "dur": 25,
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "Hotel en Waterloo",
+   "note": "Deja la mochila y sale para el estadio"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "17:30",
+   "dur": 110,
+   "match": true,
+   "zone": "belgica",
+   "spot": "Wavre",
+   "title": "Primer partido en Wavre",
+   "note": "Con la entrada del día ve todos los partidos"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "20:30",
+   "dur": 105,
+   "match": true,
+   "zone": "belgica",
+   "spot": "Wavre",
+   "title": "★ Las Leonas",
+   "note": "Segunda fase, en el Belfius Hockey Arena de Wavre"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "23:00",
+   "dur": 150,
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "Cóctel con Fer y Pablo",
+   "note": "Invitación de los entrenadores de Las Leonas"
+  },
+  {
+   "d": "2026-08-23",
+   "t": "11:00",
+   "dur": 60,
+   "day": "Domingo 23",
+   "place": "Bélgica → Ámsterdam",
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "Deja Waterloo",
+   "note": "Tren hasta Bruselas"
+  },
+  {
+   "d": "2026-08-23",
+   "t": "12:30",
+   "dur": 112,
+   "zone": "vuelo",
+   "title": "Eurostar a Ámsterdam",
+   "pend": true,
+   "note": "Falta comprarlo · 1 hora 52 minutos"
+  },
+  {
+   "d": "2026-08-23",
+   "t": "15:00",
+   "dur": 180,
+   "zone": "ams",
+   "spot": "Ámsterdam",
+   "title": "Llega al departamento",
+   "note": "Se junta con Pato. Se quedan hasta el 31"
+  },
+  {
+   "d": "2026-08-24",
+   "t": "14:45",
+   "dur": 105,
+   "day": "Lunes 24",
+   "place": "Amstelveen",
+   "match": true,
+   "zone": "ams",
+   "spot": "Amstelveen",
+   "title": "★ Los Leones vs. India",
+   "note": "Wagener Stadium · West Stand, fila 3, asiento 6"
+  },
+  {
+   "d": "2026-08-24",
+   "t": "18:00",
+   "dur": 105,
+   "zone": "ams",
+   "spot": "Amstelveen",
+   "title": "Países Bajos, con la misma entrada",
+   "note": "Los locales juegan después. Entra al estadio a las 14"
+  },
+  {
+   "d": "2026-08-25",
+   "t": "10:00",
+   "dur": 600,
+   "day": "Martes 25",
+   "place": "Ámsterdam",
+   "zone": "ams",
+   "spot": "Ámsterdam",
+   "title": "Día libre",
+   "note": "No hay partidos en ninguna sede"
+  },
+  {
+   "d": "2026-08-26",
+   "t": "10:00",
+   "dur": 600,
+   "day": "Miércoles 26",
+   "place": "Ámsterdam",
+   "zone": "ams",
+   "spot": "Ámsterdam",
+   "title": "Día libre",
+   "note": "Utrecht, Haarlem o la playa de Zandvoort"
+  },
+  {
+   "d": "2026-08-27",
+   "t": "18:00",
+   "dur": 120,
+   "day": "Jueves 27",
+   "place": "Amstelveen",
+   "match": true,
+   "pend": true,
+   "zone": "ams",
+   "spot": "Amstelveen",
+   "title": "Semifinal femenina",
+   "note": "Falta saber si es en Ámsterdam o en Wavre"
+  },
+  {
+   "d": "2026-08-28",
+   "t": "18:00",
+   "dur": 120,
+   "day": "Viernes 28",
+   "place": "Amstelveen",
+   "match": true,
+   "zone": "ams",
+   "spot": "Amstelveen",
+   "title": "Semifinal masculina",
+   "note": "Wagener Stadium · East Stand, fila 18, asiento 25"
+  },
+  {
+   "d": "2026-08-29",
+   "t": "16:00",
+   "dur": 120,
+   "day": "Sábado 29",
+   "place": "Amstelveen",
+   "match": true,
+   "pend": true,
+   "zone": "ams",
+   "spot": "Amstelveen",
+   "title": "Final femenina",
+   "note": "Entrada agotada, sigue buscando"
+  },
+  {
+   "d": "2026-08-30",
+   "t": "16:30",
+   "dur": 120,
+   "day": "Domingo 30",
+   "place": "Wavre",
+   "match": true,
+   "pend": true,
+   "zone": "belgica",
+   "spot": "Wavre",
+   "title": "Final masculina",
+   "note": "Solo si Los Leones llegan"
+  },
+  {
+   "d": "2026-08-31",
+   "t": "04:00",
+   "dur": 80,
+   "day": "Lunes 31",
+   "place": "Ámsterdam → Madrid",
+   "zone": "ams",
+   "spot": "Ámsterdam",
+   "title": "Se levanta de madrugada",
+   "note": "Taxi a Schiphol con Pato"
+  },
+  {
+   "d": "2026-08-31",
+   "t": "07:20",
+   "dur": 130,
+   "zone": "vuelo",
+   "title": "Vuelo a Madrid",
+   "note": "Iberia. Llega 9:30 a Barajas"
+  },
+  {
+   "d": "2026-08-31",
+   "t": "11:00",
+   "dur": 600,
+   "zone": "madrid",
+   "spot": "Madrid",
+   "title": "Día de descanso en Madrid",
+   "note": "En casa de Pato"
+  },
+  {
+   "d": "2026-09-01",
+   "t": "10:55",
+   "dur": 800,
+   "day": "Martes 1° de septiembre",
+   "place": "Vuelve a casa",
+   "zone": "madrid",
+   "spot": "Barajas",
+   "title": "Despega a Buenos Aires",
+   "note": "El vuelo más esperado"
+  }
+ ]
+}

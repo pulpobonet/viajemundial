@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¿Dónde está papá? · Mundial de Hockey 2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#e6edef;
+    --card:#f7fafb;
+    --ink:#08252e;
+    --ink-2:#365660;
+    --dim:#8aa2a9;
+    --celeste:#0d63a8;
+    --celeste-soft:#cadff0;
+    --amber:#8f5c0c;
+    --amber-soft:#f2e2c4;
+    --line:#bccdd3;
+    --land:#f5f9fa;
+    --land-edge:#9db6bf;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:'IBM Plex Sans',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;line-height:1.5;padding-bottom:4rem;
+  }
+  .wrap{max-width:660px;margin:0 auto;padding:0 1.15rem}
+
+  header{border-bottom:2px solid var(--ink);padding:1.6rem 0 1.2rem;margin-bottom:1.4rem}
+  .eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--ink-2);margin-bottom:.5rem}
+  h1{font-family:'Anton',sans-serif;font-size:clamp(2.1rem,9vw,3.1rem);
+    line-height:.92;text-transform:uppercase;color:var(--ink)}
+  h1 span{color:var(--celeste)}
+
+  .clocks{display:grid;grid-template-columns:1fr 1px 1fr;gap:1rem;align-items:center;margin-top:1.3rem}
+  .clock-div{background:var(--line);height:100%;min-height:56px}
+  .clock-label{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-2);margin-bottom:.15rem}
+  .clock-time{font-family:'IBM Plex Mono',monospace;font-size:2rem;font-weight:600;
+    line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums;color:var(--ink)}
+  .clock-meta{font-size:.72rem;color:var(--ink-2);margin-top:.3rem}
+
+  /* ---------- banner del momento ---------- */
+  .hero{background:var(--ink);color:#eef5f6;margin-bottom:1.6rem;
+    padding:1.35rem 0 1.5rem;position:relative;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;
+    background:radial-gradient(120% 90% at 18% 0%,rgba(125,196,246,.20),transparent 62%)}
+  .hero .wrap{position:relative}
+  .now-tag{display:inline-flex;align-items:center;gap:.45rem;font-family:'IBM Plex Mono',monospace;
+    font-size:.64rem;letter-spacing:.24em;text-transform:uppercase;color:#7dc4f6;margin-bottom:.15rem}
+  .dot{width:8px;height:8px;border-radius:50%;background:#7dc4f6;
+    animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.28;transform:scale(.7)}}
+
+  .ctx{display:flex;gap:.55rem;align-items:baseline;font-size:.76rem;color:#6f959f;
+    padding:.3rem 0;line-height:1.35}
+  .ctx b{font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:.72rem;
+    color:#87aab3;flex:none;font-variant-numeric:tabular-nums}
+  .ctx.after{border-top:1px solid rgba(238,245,246,.15);margin-top:.95rem;padding-top:.8rem}
+  .novedad{margin-top:.85rem;padding:.7rem .85rem;border-radius:3px;
+    background:rgba(125,196,246,.14);border-left:3px solid #7dc4f6;font-size:.88rem;
+    color:#dcecf2;line-height:1.45}
+  .novedad b{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.18em;
+    text-transform:uppercase;color:#7dc4f6;display:block;margin-bottom:.2rem;font-weight:400}
+
+  .zoom-row{display:grid;grid-template-columns:1fr 104px;gap:.9rem;align-items:start;margin:.55rem 0 0}
+  @media(max-width:380px){.zoom-row{grid-template-columns:1fr 84px;gap:.7rem}}
+  .zoom{border-left:3px solid #7dc4f6;padding-left:.95rem}
+  .minimap{padding-top:.15rem}
+  .minimap svg{display:block;width:100%;height:auto}
+  .mini-land{fill:rgba(238,245,246,.13);stroke:rgba(238,245,246,.28);stroke-width:1.4;stroke-linejoin:round}
+  .mini-leg{fill:none;stroke:rgba(238,245,246,.42);stroke-width:2.6;stroke-linecap:round}
+  .mini-leg.future{stroke:rgba(125,196,246,.5);stroke-dasharray:7 7}
+  .mini-city{fill:rgba(238,245,246,.55)}
+  .mini-name{font-family:'IBM Plex Mono',monospace;fill:rgba(238,245,246,.62);letter-spacing:.02em}
+  .mini-name.on{fill:#7dc4f6}
+  .mini-here{fill:#7dc4f6}
+  .mini-pulse{fill:#7dc4f6;opacity:.3;animation:ringMini 2.6s ease-out infinite}
+  .mini-pulse{transform-box:fill-box;transform-origin:center}
+  @keyframes ringMini{0%{transform:scale(1);opacity:.4}100%{transform:scale(3.4);opacity:0}}
+  .mini-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.12em;
+    text-transform:uppercase;color:#7dc4f6;text-align:center;margin-top:.3rem;line-height:1.3}
+  .zoom-when{font-family:'IBM Plex Mono',monospace;font-size:.8rem;font-weight:600;
+    color:#7dc4f6;letter-spacing:.04em;font-variant-numeric:tabular-nums;margin-bottom:.2rem}
+  .zoom-title{font-family:'Anton',sans-serif;text-transform:uppercase;
+    font-size:clamp(1.75rem,7.5vw,2.55rem);line-height:1.02;letter-spacing:.005em;color:#fff}
+  .zoom-note{font-size:.95rem;color:#b9d2d8;margin-top:.45rem;line-height:1.45}
+
+  .bar{height:5px;border-radius:3px;background:rgba(238,245,246,.16);margin-top:1rem;overflow:hidden}
+  .bar i{display:block;height:100%;background:#7dc4f6;width:0;
+    transition:width .6s ease;border-radius:3px}
+  .bar-meta{display:flex;justify-content:space-between;gap:.6rem;font-family:'IBM Plex Mono',monospace;
+    font-size:.6rem;letter-spacing:.06em;text-transform:uppercase;color:#87aab3;margin-top:.35rem;
+    white-space:nowrap}
+
+  h2{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.2em;
+    text-transform:uppercase;color:var(--ink-2);font-weight:400;margin:2rem 0 .9rem}
+
+  /* ---------- mapa ---------- */
+  .mapbox{background:#d9e7ee;border:1px solid var(--line);border-radius:3px;
+    padding:1rem .9rem .8rem;position:relative}
+  .mapbox svg{display:block;width:100%;height:auto}
+  .land{fill:var(--land);stroke:var(--land-edge);stroke-width:1;stroke-linejoin:round}
+  .leg{fill:none;stroke:var(--ink);stroke-width:2.4;stroke-linecap:round}
+  .leg.future{stroke:var(--celeste);stroke-dasharray:5 5;opacity:.75}
+  .city{fill:var(--ink)}
+  .city-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;fill:var(--ink);letter-spacing:.04em}
+  .city-sub{font-family:'IBM Plex Sans',sans-serif;font-size:8px;fill:var(--ink-2)}
+  .here-ring{fill:none;stroke:var(--celeste);stroke-width:2}
+  .here-pulse{fill:var(--celeste);opacity:.18;animation:ring 2.6s ease-out infinite}
+  @keyframes ring{0%{r:5;opacity:.35}100%{r:17;opacity:0}}
+  .maplegend{background:var(--card);margin:0 -.9rem -.8rem;padding:.55rem .9rem;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:.9rem;margin-top:.65rem;
+    font-family:'IBM Plex Mono',monospace;font-size:.63rem;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--ink-2)}
+  .maplegend i{display:inline-block;width:16px;height:0;border-top:2.4px solid var(--ink);
+    vertical-align:.25em;margin-right:.3rem}
+  .maplegend i.f{border-top:2.4px dashed var(--celeste)}
+  .maplegend i.h{width:8px;height:8px;border:2px solid var(--celeste);border-radius:50%;
+    border-top-width:2px;vertical-align:-.05em}
+
+  /* ---------- timeline ---------- */
+  .day{margin-bottom:.35rem}
+  .day-head{display:flex;align-items:baseline;gap:.6rem;padding:.85rem 0 .5rem;
+    border-bottom:1px solid var(--line);margin-bottom:.55rem}
+  .day-num{font-family:'Anton',sans-serif;font-size:1.6rem;line-height:1}
+  .day-name{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.16em;
+    text-transform:uppercase;color:var(--ink-2)}
+  .day-place{margin-left:auto;font-size:.78rem;color:var(--ink-2)}
+
+  .ev{display:grid;grid-template-columns:58px 1fr;gap:.85rem;padding:.5rem 0}
+  .ev-time{font-family:'IBM Plex Mono',monospace;font-size:.8rem;font-weight:600;
+    color:var(--ink);padding-top:.1rem;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .ev-body{border-left:2px solid var(--line);padding-left:.85rem;position:relative}
+  .ev-body::before{content:"";position:absolute;left:-5px;top:.5rem;width:8px;height:8px;
+    border-radius:50%;background:var(--paper);border:2px solid var(--line)}
+  .ev-title{font-size:.93rem;font-weight:500;line-height:1.35;color:var(--ink)}
+  .ev-note{font-size:.79rem;color:var(--ink-2);margin-top:.15rem}
+
+  .ev.done .ev-time,.ev.done .ev-title{color:var(--dim)}
+  .ev.done .ev-note{color:#a3b6bb}
+  .ev.done .ev-body::before{background:var(--dim);border-color:var(--dim)}
+
+  .ev.live .ev-body{border-left-color:var(--celeste)}
+  .ev.live .ev-body::before{background:var(--celeste);border-color:var(--celeste);
+    box-shadow:0 0 0 4px var(--celeste-soft)}
+  .ev.live .ev-title{color:var(--celeste);font-weight:600}
+
+  .ev.match .ev-body{border-left-color:var(--ink)}
+  .ev.match .ev-title{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.08rem}
+  .ev.match.done .ev-body{border-left-color:var(--line)}
+
+  .pill{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.6rem;
+    letter-spacing:.12em;text-transform:uppercase;padding:.14rem .4rem;border-radius:2px;
+    margin-left:.35rem;vertical-align:.12em}
+  .pill.pend{background:var(--amber-soft);color:var(--amber)}
+  .score{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--amber);
+    font-size:.8rem;margin-top:.2rem}
+
+  .cards{display:grid;gap:.7rem;grid-template-columns:1fr}
+  @media(min-width:520px){.cards{grid-template-columns:1fr 1fr}}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:.85rem .95rem}
+  .card h3{font-family:'IBM Plex Mono',monospace;font-size:.63rem;font-weight:400;
+    letter-spacing:.16em;text-transform:uppercase;color:var(--ink-2);margin-bottom:.5rem}
+  .card p{font-size:.85rem;line-height:1.55;color:var(--ink)}
+  footer{margin-top:2.5rem;padding-top:1.1rem;border-top:1px solid var(--line);
+    font-size:.74rem;color:var(--ink-2)}
+  :focus-visible{outline:2px solid var(--celeste);outline-offset:3px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Mundial de Hockey · Bélgica y Países Bajos</p>
+    <h1>¿Dónde está <span>papá</span>?</h1>
+    <div class="clocks">
+      <div>
+        <p class="clock-label">Allá <span id="tzName">· Europa</span></p>
+        <p class="clock-time" id="clockThere">--:--</p>
+        <p class="clock-meta"><span id="sunThere"></span> <span id="dateThere"></span></p>
+      </div>
+      <div class="clock-div"></div>
+      <div>
+        <p class="clock-label">Acá · Buenos Aires</p>
+        <p class="clock-time" id="clockHere">--:--</p>
+        <p class="clock-meta"><span id="sunHere"></span> <span id="dateHere"></span></p>
+      </div>
+    </div>
+  </header>
+
+</div>
+
+<section class="hero" aria-live="polite">
+  <div class="wrap">
+    <p class="now-tag"><span class="dot"></span> Ahora mismo</p>
+    <div class="ctx before" id="ctxBefore"></div>
+    <div class="zoom-row">
+    <div class="zoom">
+      <p class="zoom-when" id="zoomWhen">Mundial de Hockey 2026</p>
+      <p class="zoom-title" id="nowTitle">Mirá el recorrido</p>
+      <p class="zoom-note" id="nowDetail">Todo el viaje, día por día, más abajo.</p>
+      <div class="bar" id="barWrap"><i id="barFill"></i></div>
+      <div class="bar-meta"><span id="barLeft"></span><span id="barRight"></span></div>
+    </div>
+    <div class="minimap">
+      <svg id="mini" viewBox="-10 -10 358 460" role="img" aria-label="Mapa chico con la posición actual"></svg>
+      <p class="mini-label" id="miniLabel"></p>
+    </div>
+    </div>
+    <div class="ctx after" id="ctxAfter"></div>
+    <div class="novedad" id="novedad" hidden></div>
+  </div>
+</section>
+
+<div class="wrap">
+
+  <h2>El mapa</h2>
+  <div class="mapbox">
+    <svg id="map" viewBox="-6 -6 350 478" role="img"
+         aria-label="Mapa del recorrido: de Madrid al norte de España, después a Bélgica y finalmente a Ámsterdam">
+      
+      <g id="lands"><clipPath id="crop"><rect x="-6" y="-6" width="350" height="452"></rect></clipPath><g clip-path="url(#crop)"><path class="land" d="M7.9 324.0 L19.8 312.0 L31.7 303.0 L51.5 306.0 L75.2 306.0 L101.0 312.0 L108.9 310.8 L114.8 309.9 L119.8 310.2 L122.6 312.0 L127.7 312.6 L132.1 312.0 L136.6 310.5 L141.6 311.4 L146.5 312.0 L154.8 312.6 L170.3 324.0 L190.1 330.0 L203.9 333.0 L221.8 339.0 L241.6 340.5 L253.4 341.1 L251.5 357.0 L233.6 372.0 L213.8 381.0 L203.9 393.0 L194.0 399.0 L190.1 414.0 L186.1 429.0 L184.1 456.0 L7.9 456.0 L4.0 453.0 L13.9 432.0 L4.0 381.0 L15.8 357.0 Z"></path><path class="land" d="M154.8 312.6 L160.4 288.0 L166.3 273.0 L168.3 249.0 L166.3 234.0 L154.4 222.0 L146.5 204.0 L138.6 192.0 L104.9 180.0 L95.0 162.0 L120.8 153.0 L150.5 156.0 L160.4 138.0 L184.1 135.0 L198.0 132.0 L209.9 123.0 L221.8 111.0 L231.7 84.0 L240.6 81.0 L253.4 99.0 L273.2 115.5 L289.1 120.0 L306.9 129.0 L316.8 138.0 L340.6 174.0 L340.6 186.0 L328.7 190.5 L310.9 222.0 L324.7 234.0 L328.7 237.0 L324.7 261.0 L328.7 273.0 L342.5 291.0 L338.6 300.0 L318.8 318.0 L299.0 318.0 L285.1 313.5 L269.3 312.0 L249.5 324.0 L253.4 341.1 L241.6 340.5 L221.8 339.0 L203.9 333.0 L190.1 330.0 L170.3 324.0 Z"></path><path class="land" d="M240.6 81.0 L252.5 73.5 L257.4 76.5 L269.3 71.4 L261.4 66.0 L269.3 63.0 L263.3 61.5 L271.3 54.6 L270.3 51.0 L280.2 40.5 L283.1 25.5 L296.0 27.0 L297.0 24.0 L312.8 12.0 L326.7 10.5 L332.6 18.0 L329.7 34.5 L322.7 34.5 L322.7 42.0 L329.7 48.0 L324.7 57.0 L308.9 58.5 L306.9 82.5 L308.9 91.5 L301.0 99.0 L285.1 109.5 L286.1 120.0 L273.2 115.5 L253.4 99.0 Z"></path></g></g>
+      <g id="routes"><defs>
+      <marker id="arrowDone" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+        <path d="M0 1 L9 5 L0 9 z" fill="#08252e"></path></marker>
+      <marker id="arrowNext" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+        <path d="M0 1 L9 5 L0 9 z" fill="#0d63a8"></path></marker>
+    </defs><path class="leg" d="M117.3 394.4 Q119.7 356.5 122.1 318.7" marker-end="url(#arrowDone)"></path><path class="leg future" d="M126.6 306.0 Q159.8 172.2 276.1 98.1" marker-end="url(#arrowNext)"></path><path class="leg future" d="M281.0 85.5 Q278.2 67.4 285.3 50.4" marker-end="url(#arrowNext)"></path><path class="leg future" d="M283.1 49.8 Q-12.6 121.2 119.8 395.1" marker-end="url(#arrowNext)"></path></g>
+      <g id="cities"><g data-city="madrid">
+      <circle class="here-pulse" cx="116.8" cy="401.4" r="5" style="display:none"></circle>
+      <circle class="here-ring" cx="116.8" cy="401.4" r="9" style="display:none"></circle>
+      <circle class="city" cx="116.8" cy="401.4" r="3.6"></circle>
+      <text class="city-label" text-anchor="start" x="123.8" y="405.4">MADRID</text>
+      <text class="city-sub" text-anchor="start" x="123.8" y="414.4">casa de Pato</text>
+    </g><g data-city="norte">
+      <circle class="here-pulse" cx="122.6" cy="311.7" r="5" style=""></circle>
+      <circle class="here-ring" cx="122.6" cy="311.7" r="9" style=""></circle>
+      <circle class="city" cx="122.6" cy="311.7" r="3.6"></circle>
+      <text class="city-label" text-anchor="end" x="111.6" y="302.7">LAREDO</text>
+      <text class="city-sub" text-anchor="end" x="111.6" y="311.7">y Bilbao</text>
+    </g><g data-city="belgica">
+      <circle class="here-pulse" cx="280.2" cy="92.4" r="5" style="display:none"></circle>
+      <circle class="here-ring" cx="280.2" cy="92.4" r="9" style="display:none"></circle>
+      <circle class="city" cx="280.2" cy="92.4" r="3.6"></circle>
+      <text class="city-label" text-anchor="start" x="289.2" y="104.4">WAVRE</text>
+      <text class="city-sub" text-anchor="start" x="289.2" y="113.4">y Waterloo</text>
+    </g><g data-city="ams">
+      <circle class="here-pulse" cx="286.1" cy="43.5" r="5" style="display:none"></circle>
+      <circle class="here-ring" cx="286.1" cy="43.5" r="9" style="display:none"></circle>
+      <circle class="city" cx="286.1" cy="43.5" r="3.6"></circle>
+      <text class="city-label" text-anchor="end" x="277.1" y="38.5">ÁMSTERDAM</text>
+      <text class="city-sub" text-anchor="end" x="277.1" y="47.5">y Amstelveen</text>
+    </g><path class="leg future" d="M116.8 421.4 L116.8 457.4" marker-end="url(#arrowNext)"></path>
+     <text class="city-sub" text-anchor="middle" x="116.8" y="471.4">y de acá vuelve a Buenos Aires</text></g>
+    
+    </svg>
+    <div class="maplegend">
+      <span><i></i>Ya lo hizo</span>
+      <span><i class="f"></i>Le falta</span>
+      <span><i class="h"></i>Está acá</span>
+    </div>
+  </div>
+
+  <h2>El recorrido</h2>
+  <div id="timeline"><div class="day"><div class="day-head"><span class="day-num">20</span><span class="day-name">Jueves</span><span class="day-place">Madrid → Bilbao</span></div><div class="ev done" data-i="0"><div class="ev-time">02:15</div><div class="ev-body"><p class="ev-title">Bus de noche desde Madrid</p><p class="ev-note">Salió de Barajas rumbo al norte</p></div></div><div class="ev done" data-i="1"><div class="ev-time">07:00</div><div class="ev-body"><p class="ev-title">Bilbao → Laredo</p><p class="ev-note">Segundo bus, 50 minutos</p></div></div><div class="ev match done" data-i="2"><div class="ev-time">12:30</div><div class="ev-body"><p class="ev-title">Los Leones 7 · Nueva Zelanda 1</p><p class="score">Hat-trick de Domene. Argentina clasificó a la segunda fase</p><p class="ev-note">Visto por TV desde Laredo</p></div></div><div class="ev done" data-i="3"><div class="ev-time">16:00</div><div class="ev-body"><p class="ev-title">Llegada al alojamiento</p><p class="ev-note">La Arenosa, Laredo. Llovió todo el día</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">21</span><span class="day-name">Viernes</span><span class="day-place">Laredo y Bilbao</span></div><div class="ev done" data-i="4"><div class="ev-time">10:10</div><div class="ev-body"><p class="ev-title">Laredo → Bilbao</p><p class="ev-note">Bus de las 10:10</p></div></div><div class="ev live" data-i="5"><div class="ev-time">11:00</div><div class="ev-body"><p class="ev-title">Día en Bilbao</p><p class="ev-note">Guggenheim, Casco Viejo y Mercado de la Ribera</p></div></div><div class="ev" data-i="6"><div class="ev-time">17:00</div><div class="ev-body"><p class="ev-title">Bilbao → Laredo</p><p class="ev-note">Vuelta en bus</p></div></div><div class="ev" data-i="7"><div class="ev-time">18:00</div><div class="ev-body"><p class="ev-title">Bici por el paseo marítimo</p><p class="ev-note">Playa de La Salvé hasta El Puntal, unos 12 km</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">22</span><span class="day-name">Sábado</span><span class="day-place">España → Bélgica</span></div><div class="ev" data-i="8"><div class="ev-time">06:45</div><div class="ev-body"><p class="ev-title">Salida de Laredo</p><p class="ev-note">Con la mochila lista desde la noche anterior</p></div></div><div class="ev" data-i="9"><div class="ev-time">07:25</div><div class="ev-body"><p class="ev-title">Laredo → Bilbao</p><p class="ev-note">Bus de las 7:25</p></div></div><div class="ev" data-i="10"><div class="ev-time">08:30</div><div class="ev-body"><p class="ev-title">Bus al aeropuerto</p><p class="ev-note">Línea A3247 desde la estación</p></div></div><div class="ev" data-i="11"><div class="ev-time">10:35</div><div class="ev-body"><p class="ev-title">Vuelo a Bruselas</p><p class="ev-note">Vueling. Aterriza 12:30 en Zaventem</p></div></div><div class="ev" data-i="12"><div class="ev-time">13:20</div><div class="ev-body"><p class="ev-title">Tren hasta Waterloo</p><p class="ev-note">Con transbordo en Bruselas</p></div></div><div class="ev" data-i="13"><div class="ev-time">15:05</div><div class="ev-body"><p class="ev-title">Hotel en Waterloo</p><p class="ev-note">Deja la mochila y sale para el estadio</p></div></div><div class="ev match" data-i="14"><div class="ev-time">17:30</div><div class="ev-body"><p class="ev-title">Primer partido en Wavre</p><p class="ev-note">Con la entrada del día ve todos los partidos</p></div></div><div class="ev match" data-i="15"><div class="ev-time">20:30</div><div class="ev-body"><p class="ev-title">★ Las Leonas</p><p class="ev-note">Segunda fase, en el Belfius Hockey Arena de Wavre</p></div></div><div class="ev" data-i="16"><div class="ev-time">23:00</div><div class="ev-body"><p class="ev-title">Cóctel con Fer y Pablo</p><p class="ev-note">Invitación de los entrenadores de Las Leonas</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">23</span><span class="day-name">Domingo</span><span class="day-place">Bélgica → Ámsterdam</span></div><div class="ev" data-i="17"><div class="ev-time">11:00</div><div class="ev-body"><p class="ev-title">Deja Waterloo</p><p class="ev-note">Tren hasta Bruselas</p></div></div><div class="ev" data-i="18"><div class="ev-time">12:30</div><div class="ev-body"><p class="ev-title">Eurostar a Ámsterdam<span class="pill pend">sin confirmar</span></p><p class="ev-note">Falta comprarlo · 1 hora 52 minutos</p></div></div><div class="ev" data-i="19"><div class="ev-time">15:00</div><div class="ev-body"><p class="ev-title">Llega al departamento</p><p class="ev-note">Se junta con Pato. Se quedan hasta el 31</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">24</span><span class="day-name">Lunes</span><span class="day-place">Amstelveen</span></div><div class="ev match" data-i="20"><div class="ev-time">14:45</div><div class="ev-body"><p class="ev-title">★ Los Leones vs. India</p><p class="ev-note">Wagener Stadium · West Stand, fila 3, asiento 6</p></div></div><div class="ev" data-i="21"><div class="ev-time">18:00</div><div class="ev-body"><p class="ev-title">Países Bajos, con la misma entrada</p><p class="ev-note">Los locales juegan después. Entra al estadio a las 14</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">25</span><span class="day-name">Martes</span><span class="day-place">Ámsterdam</span></div><div class="ev" data-i="22"><div class="ev-time">10:00</div><div class="ev-body"><p class="ev-title">Día libre</p><p class="ev-note">No hay partidos en ninguna sede</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">26</span><span class="day-name">Miércoles</span><span class="day-place">Ámsterdam</span></div><div class="ev" data-i="23"><div class="ev-time">10:00</div><div class="ev-body"><p class="ev-title">Día libre</p><p class="ev-note">Utrecht, Haarlem o la playa de Zandvoort</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">27</span><span class="day-name">Jueves</span><span class="day-place">Amstelveen</span></div><div class="ev match" data-i="24"><div class="ev-time">18:00</div><div class="ev-body"><p class="ev-title">Semifinal femenina<span class="pill pend">sin confirmar</span></p><p class="ev-note">Falta saber si es en Ámsterdam o en Wavre</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">28</span><span class="day-name">Viernes</span><span class="day-place">Amstelveen</span></div><div class="ev match" data-i="25"><div class="ev-time">18:00</div><div class="ev-body"><p class="ev-title">Semifinal masculina</p><p class="ev-note">Wagener Stadium · East Stand, fila 18, asiento 25</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">29</span><span class="day-name">Sábado</span><span class="day-place">Amstelveen</span></div><div class="ev match" data-i="26"><div class="ev-time">16:00</div><div class="ev-body"><p class="ev-title">Final femenina<span class="pill pend">sin confirmar</span></p><p class="ev-note">Entrada agotada, sigue buscando</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">30</span><span class="day-name">Domingo</span><span class="day-place">Wavre</span></div><div class="ev match" data-i="27"><div class="ev-time">16:30</div><div class="ev-body"><p class="ev-title">Final masculina<span class="pill pend">sin confirmar</span></p><p class="ev-note">Solo si Los Leones llegan</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">31</span><span class="day-name">Lunes</span><span class="day-place">Ámsterdam → Madrid</span></div><div class="ev" data-i="28"><div class="ev-time">04:00</div><div class="ev-body"><p class="ev-title">Se levanta de madrugada</p><p class="ev-note">Taxi a Schiphol con Pato</p></div></div><div class="ev" data-i="29"><div class="ev-time">07:20</div><div class="ev-body"><p class="ev-title">Vuelo a Madrid</p><p class="ev-note">Iberia. Llega 9:30 a Barajas</p></div></div><div class="ev" data-i="30"><div class="ev-time">11:00</div><div class="ev-body"><p class="ev-title">Día de descanso en Madrid</p><p class="ev-note">En casa de Pato</p></div></div></div><div class="day"><div class="day-head"><span class="day-num">1°</span><span class="day-name">Martes</span><span class="day-place">Vuelve a casa</span></div><div class="ev" data-i="31"><div class="ev-time">10:55</div><div class="ev-body"><p class="ev-title">Despega a Buenos Aires</p><p class="ev-note">El vuelo más esperado</p></div></div></div></div>
+
+  <h2>Datos útiles</h2>
+  <div class="cards">
+    <div class="card">
+      <h3>Los partidos de Argentina</h3>
+      <p>Los Leones juegan en Amstelveen, al lado de Ámsterdam. Las Leonas, en Wavre, en Bélgica. Papá tiene entrada para los dos.</p>
+    </div>
+    <div class="card">
+      <h3>La diferencia horaria</h3>
+      <p>Allá son <strong>5 horas más</strong> que acá. Si en Buenos Aires son las 8 de la mañana, en Europa es la una de la tarde.</p>
+    </div>
+    <div class="card">
+      <h3>Dónde duerme</h3>
+      <p>En Laredo hasta el sábado, una noche en Waterloo, y del 23 al 31 en el departamento de Ámsterdam con Pato.</p>
+    </div>
+    <div class="card">
+      <h3>La vuelta</h3>
+      <p>Sale de Ámsterdam el lunes 31 a las 7:20 y duerme en Madrid. El martes 1° despega a Buenos Aires a las 10:55.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>Esta página se actualiza sola con el reloj. Lo gris ya pasó, lo azul está pasando ahora y lo que dice «sin confirmar» todavía no está cerrado.</p>
+  </footer>
+</div>
+
+<script>
+const OFF="+02:00";
+let EV=[
+ {d:"2026-08-20",t:"02:15",dur:235,day:"Jueves 20",place:"Madrid → Bilbao",zone:"norte",
+  spot:"Madrid",title:"Bus de noche desde Madrid",note:"Salió de Barajas rumbo al norte"},
+ {d:"2026-08-20",t:"07:00",dur:50,zone:"norte",spot:"Laredo",title:"Bilbao → Laredo",note:"Segundo bus, 50 minutos"},
+ {d:"2026-08-20",t:"12:30",dur:105,match:true,zone:"norte",spot:"Laredo",title:"Los Leones 7 · Nueva Zelanda 1",
+  score:"Hat-trick de Domene. Argentina clasificó a la segunda fase",note:"Visto por TV desde Laredo"},
+ {d:"2026-08-20",t:"16:00",dur:60,zone:"norte",spot:"Laredo",title:"Llegada al alojamiento",note:"La Arenosa, Laredo. Llovió todo el día"},
+
+ {d:"2026-08-21",t:"10:10",dur:50,day:"Viernes 21",place:"Laredo y Bilbao",zone:"norte",
+  spot:"Bilbao",title:"Laredo → Bilbao",note:"Bus de las 10:10"},
+ {d:"2026-08-21",t:"11:00",dur:330,zone:"norte",spot:"Bilbao",title:"Día en Bilbao",
+  note:"Guggenheim, Casco Viejo y Mercado de la Ribera"},
+ {d:"2026-08-21",t:"17:00",dur:50,zone:"norte",spot:"Laredo",title:"Bilbao → Laredo",note:"Vuelta en bus"},
+ {d:"2026-08-21",t:"18:00",dur:180,zone:"norte",spot:"Laredo",title:"Bici por el paseo marítimo",
+  note:"Playa de La Salvé hasta El Puntal, unos 12 km"},
+
+ {d:"2026-08-22",t:"06:45",dur:40,day:"Sábado 22",place:"España → Bélgica",zone:"norte",
+  spot:"Laredo",title:"Salida de Laredo",note:"Con la mochila lista desde la noche anterior"},
+ {d:"2026-08-22",t:"07:25",dur:50,zone:"norte",spot:"Bilbao",title:"Laredo → Bilbao",note:"Bus de las 7:25"},
+ {d:"2026-08-22",t:"08:30",dur:25,zone:"norte",spot:"Bilbao",title:"Bus al aeropuerto",note:"Línea A3247 desde la estación"},
+ {d:"2026-08-22",t:"10:35",dur:115,zone:"vuelo",title:"Vuelo a Bruselas",note:"Vueling. Aterriza 12:30 en Zaventem"},
+ {d:"2026-08-22",t:"13:20",dur:105,zone:"belgica",spot:"Aeropuerto",title:"Tren hasta Waterloo",note:"Con transbordo en Bruselas"},
+ {d:"2026-08-22",t:"15:05",dur:25,zone:"belgica",spot:"Waterloo",title:"Hotel en Waterloo",note:"Deja la mochila y sale para el estadio"},
+ {d:"2026-08-22",t:"17:30",dur:110,match:true,zone:"belgica",spot:"Wavre",title:"Primer partido en Wavre",
+  note:"Con la entrada del día ve todos los partidos"},
+ {d:"2026-08-22",t:"20:30",dur:105,match:true,zone:"belgica",spot:"Wavre",title:"★ Las Leonas",
+  note:"Segunda fase, en el Belfius Hockey Arena de Wavre"},
+ {d:"2026-08-22",t:"23:00",dur:150,zone:"belgica",spot:"Waterloo",title:"Cóctel con Fer y Pablo",
+  note:"Invitación de los entrenadores de Las Leonas"},
+
+ {d:"2026-08-23",t:"11:00",dur:60,day:"Domingo 23",place:"Bélgica → Ámsterdam",zone:"belgica",
+  spot:"Waterloo",title:"Deja Waterloo",note:"Tren hasta Bruselas"},
+ {d:"2026-08-23",t:"12:30",dur:112,zone:"vuelo",title:"Eurostar a Ámsterdam",pend:true,
+  note:"Falta comprarlo · 1 hora 52 minutos"},
+ {d:"2026-08-23",t:"15:00",dur:180,zone:"ams",spot:"Ámsterdam",title:"Llega al departamento",
+  note:"Se junta con Pato. Se quedan hasta el 31"},
+
+ {d:"2026-08-24",t:"14:45",dur:105,day:"Lunes 24",place:"Amstelveen",match:true,zone:"ams",
+  spot:"Amstelveen",title:"★ Los Leones vs. India",note:"Wagener Stadium · West Stand, fila 3, asiento 6"},
+ {d:"2026-08-24",t:"18:00",dur:105,zone:"ams",spot:"Amstelveen",title:"Países Bajos, con la misma entrada",
+  note:"Los locales juegan después. Entra al estadio a las 14"},
+
+ {d:"2026-08-25",t:"10:00",dur:600,day:"Martes 25",place:"Ámsterdam",zone:"ams",
+  spot:"Ámsterdam",title:"Día libre",note:"No hay partidos en ninguna sede"},
+ {d:"2026-08-26",t:"10:00",dur:600,day:"Miércoles 26",place:"Ámsterdam",zone:"ams",
+  spot:"Ámsterdam",title:"Día libre",note:"Utrecht, Haarlem o la playa de Zandvoort"},
+
+ {d:"2026-08-27",t:"18:00",dur:120,day:"Jueves 27",place:"Amstelveen",match:true,pend:true,zone:"ams",
+  spot:"Amstelveen",title:"Semifinal femenina",note:"Falta saber si es en Ámsterdam o en Wavre"},
+ {d:"2026-08-28",t:"18:00",dur:120,day:"Viernes 28",place:"Amstelveen",match:true,zone:"ams",
+  spot:"Amstelveen",title:"Semifinal masculina",note:"Wagener Stadium · East Stand, fila 18, asiento 25"},
+ {d:"2026-08-29",t:"16:00",dur:120,day:"Sábado 29",place:"Amstelveen",match:true,pend:true,zone:"ams",
+  spot:"Amstelveen",title:"Final femenina",note:"Entrada agotada, sigue buscando"},
+ {d:"2026-08-30",t:"16:30",dur:120,day:"Domingo 30",place:"Wavre",match:true,pend:true,zone:"belgica",
+  spot:"Wavre",title:"Final masculina",note:"Solo si Los Leones llegan"},
+
+ {d:"2026-08-31",t:"04:00",dur:80,day:"Lunes 31",place:"Ámsterdam → Madrid",zone:"ams",
+  spot:"Ámsterdam",title:"Se levanta de madrugada",note:"Taxi a Schiphol con Pato"},
+ {d:"2026-08-31",t:"07:20",dur:130,zone:"vuelo",title:"Vuelo a Madrid",note:"Iberia. Llega 9:30 a Barajas"},
+ {d:"2026-08-31",t:"11:00",dur:600,zone:"madrid",spot:"Madrid",title:"Día de descanso en Madrid",note:"En casa de Pato"},
+ {d:"2026-09-01",t:"10:55",dur:800,day:"Martes 1° de septiembre",place:"Vuelve a casa",zone:"madrid",
+  spot:"Barajas",title:"Despega a Buenos Aires",note:"El vuelo más esperado"}
+];
+
+/* ---------- proyección del mapa ---------- */
+const SC=30, KX=.66, LAT0=53.8, LON0=-9.6;
+const px=(lon,lat)=>[ (lon-LON0)*SC*KX, (LAT0-lat)*SC ];
+const path=pts=>pts.map((p,i)=>(i?"L":"M")+px(p[0],p[1]).map(n=>n.toFixed(1)).join(" ")).join(" ")+" Z";
+
+const IBERIA=[[-9.2,43.0],[-8.6,43.4],[-8.0,43.7],[-7.0,43.6],[-5.8,43.6],[-4.5,43.40],[-4.10,43.44],[-3.80,43.47],[-3.55,43.46],
+ [-3.41,43.40],[-3.15,43.38],[-2.93,43.40],[-2.70,43.45],[-2.45,43.42],[-2.20,43.40],[-1.78,43.38],[-1.0,43.0],[0.0,42.8],[0.7,42.7],[1.6,42.5],[2.6,42.45],
+ [3.2,42.43],[3.1,41.9],[2.2,41.4],[1.2,41.1],[0.7,40.7],[0.2,40.5],[0.0,40.0],[-0.2,39.5],[-0.3,38.6],
+ [-9.2,38.6],[-9.4,38.7],[-8.9,39.4],[-9.4,41.1],[-8.8,41.9]];
+const FRANCIA=[[-1.78,43.38],[-1.5,44.2],[-1.2,44.7],[-1.1,45.5],[-1.2,46.0],[-1.8,46.4],[-2.2,47.0],
+ [-2.6,47.4],[-4.3,47.8],[-4.8,48.4],[-3.5,48.7],[-2.0,48.6],[-1.5,49.2],[-0.3,49.3],[0.4,49.4],
+ [1.0,49.7],[1.6,50.1],[2.1,51.0],[2.55,51.1],[3.2,50.5],[4.2,49.95],[5.0,49.8],[5.9,49.5],[6.4,49.2],
+ [7.6,48.0],[7.6,47.6],[7.0,47.45],[6.1,46.4],[6.8,46.0],[7.0,45.9],[6.8,45.1],[7.0,44.7],[7.7,44.1],
+ [7.5,43.8],[6.5,43.2],[5.5,43.2],[4.8,43.35],[4.0,43.4],[3.0,43.0],[3.2,42.43],[2.6,42.45],[1.6,42.5],
+ [0.7,42.7],[0.0,42.8],[-1.0,43.0]];
+const BENELUX=[[2.55,51.1],[3.15,51.35],[3.4,51.25],[4.0,51.42],[3.6,51.6],[4.0,51.7],[3.7,51.75],
+ [4.1,51.98],[4.05,52.1],[4.55,52.45],[4.7,52.95],[5.35,52.9],[5.4,53.0],[6.2,53.4],[6.9,53.45],
+ [7.2,53.2],[7.05,52.65],[6.7,52.65],[6.7,52.4],[7.05,52.2],[6.8,51.9],[6.0,51.85],[5.9,51.05],
+ [6.0,50.75],[5.6,50.5],[4.8,50.15],[4.85,49.8],[4.2,49.95],[3.2,50.5]];
+const GB=[[-5.6,50.0],[-4.0,50.3],[-2.9,50.6],[-1.0,50.7],[0.8,50.75],[1.45,51.1],[1.4,51.4],
+ [0.4,51.5],[-0.6,51.5],[-3.0,51.4],[-4.6,51.6],[-5.3,51.7],[-5.0,50.4]];
+
+const CITIES=[
+ {id:"madrid", lon:-3.70, lat:40.42, name:"MADRID", sub:"casa de Pato", dx:7, dy:4},
+ {id:"norte",  lon:-3.41, lat:43.41, name:"LAREDO", sub:"y Bilbao", dx:-11, dy:-9, anchor:"end"},
+ {id:"belgica",lon:4.55,  lat:50.72, name:"WAVRE", sub:"y Waterloo", dx:9, dy:12},
+ {id:"ams",    lon:4.85,  lat:52.35, name:"ÁMSTERDAM", sub:"y Amstelveen", dx:-9, dy:-5, anchor:"end"}
+];
+
+const SCENES={
+ norte:{pad:.30, pts:[
+    {n:"Santander",lon:-3.80,lat:43.46,dy:14,anchor:"middle"},
+    {n:"Laredo",lon:-3.41,lat:43.41,dy:-7,anchor:"middle"},
+    {n:"Bilbao",lon:-2.93,lat:43.26,dy:13,anchor:"middle"}],
+   link:[["Laredo","Bilbao"]]},
+ belgica:{pad:.14, pts:[
+    {n:"Aeropuerto",lon:4.48,lat:50.90,dy:-7,anchor:"middle"},
+    {n:"Bruselas",lon:4.35,lat:50.85,dy:-7,anchor:"middle"},
+    {n:"Waterloo",lon:4.40,lat:50.71,dy:13,anchor:"middle"},
+    {n:"Wavre",lon:4.61,lat:50.72,dy:13,anchor:"middle"}],
+   link:[["Aeropuerto","Waterloo"],["Waterloo","Wavre"]]},
+ ams:{pad:.10, pts:[
+    {n:"Ámsterdam",lon:4.90,lat:52.37,dy:-7,anchor:"middle"},
+    {n:"Amstelveen",lon:4.86,lat:52.30,dy:13,anchor:"middle"},
+    {n:"Schiphol",lon:4.76,lat:52.31,dy:13,anchor:"middle"}],
+   link:[["Ámsterdam","Amstelveen"]]},
+ madrid:{pad:.16, pts:[
+    {n:"Madrid",lon:-3.70,lat:40.42,dy:13,anchor:"middle"},
+    {n:"Barajas",lon:-3.57,lat:40.47,dy:-7,anchor:"middle"}],
+   link:[["Madrid","Barajas"]]}
+};
+
+const LEGS=[
+ {from:"madrid", to:"norte",  after:"2026-08-20T07:50", arc:0},
+ {from:"norte",  to:"belgica",after:"2026-08-22T12:30", arc:-.20},
+ {from:"belgica",to:"ams",    after:"2026-08-23T14:30", arc:-.14},
+ {from:"ams",    to:"madrid", after:"2026-08-31T09:30", arc:.62}
+];
+
+function cityXY(id){const c=CITIES.find(c=>c.id===id);return px(c.lon,c.lat);}
+function arcPath(a,b,k){
+  const [x1,y1]=a,[x2,y2]=b, mx=(x1+x2)/2, my=(y1+y2)/2;
+  const dx=x2-x1, dy=y2-y1;
+  return `M${x1.toFixed(1)} ${y1.toFixed(1)} Q${(mx-dy*k).toFixed(1)} ${(my+dx*k).toFixed(1)} ${x2.toFixed(1)} ${y2.toFixed(1)}`;
+}
+function shorten(a,b,r1,r2){
+  const dx=b[0]-a[0], dy=b[1]-a[1], L=Math.hypot(dx,dy);
+  return [[a[0]+dx/L*r1, a[1]+dy/L*r1],[b[0]-dx/L*r2, b[1]-dy/L*r2]];
+}
+
+function drawMini(now, zone, spot){
+  const sc=SCENES[zone||"norte"];
+  const el=document.getElementById("mini");
+  if(!sc){ el.innerHTML=""; return; }
+
+  // encuadre: la caja que contiene los puntos del día, con margen
+  const lons=sc.pts.map(p=>p.lon), lats=sc.pts.map(p=>p.lat);
+  const x0=px(Math.min(...lons)-sc.pad*2.4, 0)[0], x1=px(Math.max(...lons)+sc.pad*2.4, 0)[0];
+  const y0=px(0,Math.max(...lats)+sc.pad*1.15)[1], y1=px(0,Math.min(...lats)-sc.pad*1.15)[1];
+  const w=x1-x0, h=y1-y0;
+  el.setAttribute("viewBox",`${x0.toFixed(1)} ${y0.toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);
+
+  const k=w/104;                         // escala: el mapita mide ~104 px de ancho
+  const R=4.2*k, RH=6.5*k, FS=7.5*k;
+  const at=n=>{const p=sc.pts.find(p=>p.n===n);return px(p.lon,p.lat);};
+
+  const land=[IBERIA,FRANCIA,BENELUX].map(p=>
+    `<path class="mini-land" d="${path(p)}" style="stroke-width:${(1.2*k).toFixed(2)}"/>`).join("");
+
+  const links=(sc.link||[]).map(([a,b])=>{
+    let A=at(a),B=at(b); [A,B]=shorten(A,B,R*1.9,R*2.6);
+    return `<path class="mini-leg" d="M${A[0].toFixed(1)} ${A[1].toFixed(1)} L${B[0].toFixed(1)} ${B[1].toFixed(1)}"
+      style="stroke-width:${(2.1*k).toFixed(2)}" marker-end="url(#miniArrow)"/>`;
+  }).join("");
+
+  const dots=sc.pts.map(p=>{
+    const [x,y]=px(p.lon,p.lat), here=(p.n===spot);
+    return (here?`<circle class="mini-pulse" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${RH}"/>`:"")+
+     `<circle class="${here?"mini-here":"mini-city"}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(here?RH:R).toFixed(1)}"/>`+
+     `<text class="mini-name${here?" on":""}" text-anchor="${p.anchor||"start"}"
+        x="${(x+(p.dx||0)*k).toFixed(1)}" y="${(y+((p.dy||3.5))*k).toFixed(1)}"
+        style="font-size:${FS.toFixed(1)}px">${p.n}</text>`;
+  }).join("");
+
+  el.innerHTML=`<defs><marker id="miniArrow" viewBox="0 0 10 10" refX="8" refY="5"
+      markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+      <path d="M0 1 L9 5 L0 9 z" fill="rgba(238,245,246,.55)"/></marker></defs>`+
+    `<g>`+land+`</g>`+links+dots;
+}
+
+function drawMap(now){
+  const lands=document.getElementById("lands");
+  lands.innerHTML=`<clipPath id="crop"><rect x="-6" y="-6" width="350" height="452"/></clipPath>`+
+    `<g clip-path="url(#crop)">`+[IBERIA,FRANCIA,BENELUX].map(p=>`<path class="land" d="${path(p)}"/>`).join("")+`</g>`;
+
+  const routes=LEGS.map((l,i)=>{
+    let a=cityXY(l.from), b=cityXY(l.to);
+    [a,b]=shorten(a,b,7,7);
+    const done=new Date(l.after+":00"+OFF)<=now;
+    return `<path class="leg${done?"":" future"}" d="${arcPath(a,b,l.arc||0)}"
+            marker-end="url(#${done?'arrowDone':'arrowNext'})"/>`;
+  }).join("");
+  document.getElementById("routes").innerHTML=
+    `<defs>
+      <marker id="arrowDone" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+        <path d="M0 1 L9 5 L0 9 z" fill="#08252e"/></marker>
+      <marker id="arrowNext" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5.5" markerHeight="5.5" orient="auto-start-reverse">
+        <path d="M0 1 L9 5 L0 9 z" fill="#0d63a8"/></marker>
+    </defs>`+routes;
+
+  document.getElementById("cities").innerHTML=CITIES.map(c=>{
+    const [x,y]=px(c.lon,c.lat);
+    return `<g data-city="${c.id}">
+      <circle class="here-pulse" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="5" style="display:none"/>
+      <circle class="here-ring" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="9" style="display:none"/>
+      <circle class="city" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3.6"/>
+      <text class="city-label" text-anchor="${c.anchor||"start"}" x="${(x+c.dx).toFixed(1)}" y="${(y+c.dy).toFixed(1)}">${c.name}</text>
+      <text class="city-sub" text-anchor="${c.anchor||"start"}" x="${(x+c.dx).toFixed(1)}" y="${(y+c.dy+9).toFixed(1)}">${c.sub}</text>
+    </g>`;
+  }).join("")+
+  (()=>{const [x,y]=px(-3.70,40.42);
+   return `<path class="leg future" d="M${x.toFixed(1)} ${(y+20).toFixed(1)} L${x.toFixed(1)} ${(y+56).toFixed(1)}" marker-end="url(#arrowNext)"/>
+     <text class="city-sub" text-anchor="middle" x="${x.toFixed(1)}" y="${(y+70).toFixed(1)}">y de acá vuelve a Buenos Aires</text>`;})();
+}
+
+/* ---------- relojes y estado ---------- */
+const fmt=(d,tz)=>new Intl.DateTimeFormat("es-AR",{hour:"2-digit",minute:"2-digit",hour12:false,timeZone:tz}).format(d);
+const hourIn=(d,tz)=>parseInt(new Intl.DateTimeFormat("es-AR",{hour:"2-digit",hour12:false,timeZone:tz}).format(d),10);
+function dayIn(d,tz){
+  const p=new Intl.DateTimeFormat("es-AR",{day:"numeric",month:"long",timeZone:tz}).formatToParts(d);
+  return p.find(x=>x.type==="day").value+" de "+p.find(x=>x.type==="month").value;
+}
+const start=e=>new Date(e.d+"T"+e.t+":00"+OFF);
+const end=e=>new Date(start(e).getTime()+(e.dur||60)*60000);
+const clean=s=>s.replace(/^★ /,"");
+function dayLabel(e){const i=EV.indexOf(e);for(let j=i;j>=0;j--){if(EV[j].place)return EV[j].place;}return "";}
+
+function tick(){
+  const now=new Date(), tzT="Europe/Madrid", tzH="America/Argentina/Buenos_Aires";
+  clockThere.textContent=fmt(now,tzT); clockHere.textContent=fmt(now,tzH);
+  dateThere.textContent=dayIn(now,tzT); dateHere.textContent=dayIn(now,tzH);
+  const hT=hourIn(now,tzT), hH=hourIn(now,tzH);
+  sunThere.textContent=(hT>=7&&hT<21)?"☀":"☾";
+  sunHere.textContent=(hH>=7&&hH<21)?"☀":"☾";
+
+  let live=null,next=null,last=null,liveI=-1;
+  EV.forEach((e,i)=>{
+    if(end(e)<=now){last=e;}
+    else if(start(e)<=now && !live){live=e;liveI=i;}
+    else if(!next && start(e)>now){next=e;}
+  });
+
+  const fmtDur=m=> m<1 ? "un momento"
+      : m<60 ? m+" min"
+      : m<1440 ? (Math.floor(m/60)+" h"+(m%60?" "+(m%60)+" min":""))
+      : (Math.round(m/1440)+" días");
+
+  // ---- lo que está pasando, en grande
+  if(live){
+    zoomWhen.textContent=fmt(start(live),tzT)+" · "+(live.place||dayLabel(live));
+    nowTitle.textContent=clean(live.title);
+    nowDetail.textContent=live.note||"";
+    const total=(live.dur||60), done=(now-start(live))/60000;
+    const pct=Math.max(2,Math.min(100,done/total*100));
+    barWrap.style.display=""; barFill.style.width=pct.toFixed(0)+"%";
+    barLeft.textContent="empezó hace "+fmtDur(Math.round(done));
+    barRight.textContent="faltan "+fmtDur(Math.round(total-done));
+  } else if(next){
+    zoomWhen.textContent="Sin nada agendado";
+    nowTitle.textContent= last? "Momento libre" : "Todavía no arrancó";
+    nowDetail.textContent= last
+      ? "Lo último que hizo: "+clean(last.title).toLowerCase()+"."
+      : "El viaje empieza el jueves 20 de agosto.";
+    barWrap.style.display="none"; barLeft.textContent=""; barRight.textContent="";
+  } else {
+    zoomWhen.textContent="Fin del viaje";
+    nowTitle.textContent="Ya está en casa";
+    nowDetail.textContent="";
+    barWrap.style.display="none"; barLeft.textContent=""; barRight.textContent="";
+  }
+
+  // ---- contexto: lo anterior y lo siguiente, en chiquito
+  const todayISO=new Intl.DateTimeFormat("en-CA",{timeZone:tzT}).format(now);
+  const stamp=e=>{
+    if(e.d===todayISO) return e.t;
+    const [Y,M,D]=e.d.split("-");
+    const ayer=new Date(now.getTime()-864e5);
+    const ayerISO=new Intl.DateTimeFormat("en-CA",{timeZone:tzT}).format(ayer);
+    return (e.d===ayerISO?"ayer ":(+D)+"/"+(+M)+" ")+e.t;
+  };
+  ctxBefore.innerHTML = last
+    ? '<b>'+stamp(last)+'</b><span>'+clean(last.title)+'</span>'
+    : '<b>—</b><span>Todavía no empezó nada</span>';
+  if(next){
+    const m=Math.round((start(next)-now)/60000);
+    ctxAfter.innerHTML='<b>'+stamp(next)+'</b><span>'+clean(next.title)+
+      ' <span style="color:#7dc4f6">· en '+fmtDur(m)+'</span></span>';
+  } else {
+    ctxAfter.innerHTML='<b>—</b><span>No queda nada pendiente</span>';
+  }
+
+  document.querySelectorAll(".ev").forEach(el=>{
+    const e=EV[+el.dataset.i];
+    el.classList.toggle("done",end(e)<=now);
+    el.classList.toggle("live",start(e)<=now&&now<end(e));
+  });
+
+  const zone=(live||last||EV[0]).zone;
+  const target=(zone==="vuelo")?null:zone;
+  document.querySelectorAll("[data-city]").forEach(g=>{
+    const on=g.dataset.city===target;
+    g.querySelector(".here-ring").style.display=on?"":"none";
+    g.querySelector(".here-pulse").style.display=on?"":"none";
+  });
+  drawRoutes(now);
+  const cur=live||last||EV[0];
+  drawMini(now,target||cur.zone,cur.spot);
+  miniLabel.textContent = target ? (cur.spot||"") : "En viaje";
+}
+
+function drawRoutes(now){
+  document.querySelectorAll("#routes .leg").forEach((p,i)=>{
+    const done=new Date(LEGS[i].after+":00"+OFF)<=now;
+    p.classList.toggle("future",!done);
+    p.setAttribute("marker-end",`url(#${done?'arrowDone':'arrowNext'})`);
+  });
+}
+
+function render(){
+  let html="",open=false;
+  EV.forEach((e,i)=>{
+    if(e.day){
+      if(open) html+="</div>";
+      const parts=e.day.split(" ");
+      html+=`<div class="day"><div class="day-head"><span class="day-num">${parts[1]}</span>`+
+            `<span class="day-name">${parts[0]}</span>`+
+            (e.place?`<span class="day-place">${e.place}</span>`:"")+`</div>`;
+      open=true;
+    }
+    html+=`<div class="ev${e.match?" match":""}" data-i="${i}">`+
+          `<div class="ev-time">${e.t}</div><div class="ev-body">`+
+          `<p class="ev-title">${e.title}${e.pend?'<span class="pill pend">sin confirmar</span>':""}</p>`+
+          (e.score?`<p class="score">${e.score}</p>`:"")+
+          (e.note?`<p class="ev-note">${e.note}</p>`:"")+`</div></div>`;
+  });
+  if(open) html+="</div>";
+  timeline.innerHTML=html;
+}
+
+try{ render(); drawMap(new Date()); tick(); setInterval(tick,30000); }
+catch(err){ console.error(err); }
+
+// Los datos viven en datos.json, al lado de este archivo.
+// Editarlo desde el celular actualiza la página sin tocar nada más.
+async function cargarDatos(){
+  try{
+    const r = await fetch("datos.json?v="+Date.now(), {cache:"no-store"});
+    if(!r.ok) return;
+    const d = await r.json();
+    if(Array.isArray(d.eventos) && d.eventos.length){ EV = d.eventos; render(); }
+    const n = document.getElementById("novedad");
+    if(d.novedad && d.novedad.texto){
+      n.hidden = false;
+      n.innerHTML = "<b>Última novedad" + (d.novedad.hora ? " · "+d.novedad.hora : "") + "</b>" + d.novedad.texto;
+    } else { n.hidden = true; }
+    tick();
+  }catch(e){ /* si no está el archivo, queda lo que ya vino escrito */ }
+}
+cargarDatos();
+setInterval(cargarDatos, 120000);
+</script>
+</body>
+</html>
