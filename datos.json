@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "Camino a Países Bajos. Mañana lunes, Los Leones contra India en el Wagener de Amstelveen.",
-  "hora": "11:30"
+  "texto": "Ya en Países Bajos, con Pato. Mañana a las 14:45, Los Leones contra India en el Wagener.",
+  "hora": "19:00"
  },
  "eventos": [
   {
@@ -233,7 +233,7 @@
   {
    "d": "2026-08-23",
    "t": "11:20",
-   "dur": 30,
+   "dur": 35,
    "zone": "belgica",
    "spot": "Waterloo",
    "title": "Waterloo → Bruselas-Midi",
@@ -242,19 +242,37 @@
   {
    "d": "2026-08-23",
    "t": "12:57",
-   "dur": 111,
-   "zone": "vuelo",
-   "title": "Eurocity Direct a Países Bajos",
-   "note": "Bruselas-Midi → Schiphol, 1 h 51 sin transbordos. Llegada 14:48"
+   "dur": 45,
+   "zone": "belgica",
+   "title": "El tren cancelado",
+   "score": "«Rijdt niet»: el Eurocity Direct a Ámsterdam no salió",
+   "note": "Cartel rojo en la pantalla de Bruselas-Midi. Hubo que rearmar el viaje sobre la marcha"
   },
   {
    "d": "2026-08-23",
-   "t": "15:00",
-   "dur": 240,
+   "t": "13:45",
+   "dur": 75,
+   "zone": "vuelo",
+   "title": "Desvío por Amberes",
+   "note": "Reencaminado vía Antwerpen-Centraal, una de las estaciones más lindas del mundo, con su cúpula de vidrio y cuatro niveles de vías"
+  },
+  {
+   "d": "2026-08-23",
+   "t": "15:30",
+   "dur": 50,
    "zone": "ams",
    "spot": "Schiphol",
-   "title": "Llega al alojamiento",
-   "note": "Amrâth Apart-Hotel Badhoevedorp, al lado de Schiphol. Se junta con Pato. Se quedan hasta el 31"
+   "title": "Llegada a Schiphol",
+   "note": "Y de ahí el bus 195 hasta Badhoevedorp, parada B7"
+  },
+  {
+   "d": "2026-08-23",
+   "t": "16:30",
+   "dur": 300,
+   "zone": "ams",
+   "spot": "Schiphol",
+   "title": "El alojamiento de la última semana",
+   "note": "Apart-hotel en Badhoevedorp, al lado de Schiphol. Con cocina y lavandería. Se juntó con Pato y fueron al súper: después de doce días de bares y estaciones, cocinar en casa"
   },
   {
    "d": "2026-08-24",
@@ -266,7 +284,7 @@
    "zone": "ams",
    "spot": "Amstelveen",
    "title": "★ Los Leones vs. India",
-   "note": "Wagener Stadium · West Stand, fila 3, asiento 6. Los Leones llegan con 3 puntos tras ganarle a Inglaterra. Desde Badhoevedorp queda cerca"
+   "note": "Wagener Stadium · West Stand, fila 3, asiento 6. Los Leones llegan con 3 puntos tras el 3-1 a Inglaterra. Nieuwe Kalfjeslaan 18, Amstelveen"
   },
   {
    "d": "2026-08-24",
