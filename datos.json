@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "Llegando a Bilbao. Arranco por el Guggenheim.",
-  "hora": "11:05"
+  "texto": "Doble triunfo argentino. Los Leones 3-1 a Inglaterra y Las Leonas 3-0 a España, clasificadas a semifinal. Vuelta a Waterloo con todo el plantel.",
+  "hora": "23:30"
  },
  "eventos": [
   {
@@ -159,7 +159,7 @@
    "dur": 115,
    "zone": "vuelo",
    "title": "Vuelo a Bruselas",
-   "note": "Vueling. Aterriza 12:30 en Zaventem"
+   "note": "Vueling VY1470, puerta A13. Aterrizó 12:30 en Zaventem"
   },
   {
    "d": "2026-08-22",
@@ -168,7 +168,7 @@
    "zone": "belgica",
    "spot": "Aeropuerto",
    "title": "Tren hasta Waterloo",
-   "note": "Con transbordo en Bruselas"
+   "note": "Con transbordo en Bruselas-Midi"
   },
   {
    "d": "2026-08-22",
@@ -177,36 +177,47 @@
    "zone": "belgica",
    "spot": "Waterloo",
    "title": "Hotel en Waterloo",
-   "note": "Deja la mochila y sale para el estadio"
+   "note": "Dejó la mochila y salió para el estadio"
   },
   {
    "d": "2026-08-22",
-   "t": "17:30",
-   "dur": 110,
-   "match": true,
+   "t": "15:30",
+   "dur": 225,
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "La odisea hasta Wavre",
+   "note": "El bus TEC 125 no opera los sábados. Tren a Etterbeek, espera, tren a Ottignies y de ahí a Wavre. Tres horas y media de andenes, pero llegó a tiempo para todo"
+  },
+  {
+   "d": "2026-08-22",
+   "t": "19:00",
+   "dur": 90,
    "zone": "belgica",
    "spot": "Wavre",
-   "title": "Primer partido en Wavre",
-   "note": "Con la entrada del día ve todos los partidos"
+   "match": true,
+   "title": "★ Los Leones 3 · Inglaterra 1",
+   "score": "Otro hat-trick de Domene, el segundo del Mundial",
+   "note": "Se jugaba en Amstelveen y lo vio en la pantalla gigante del estadio de Wavre, ya adentro"
   },
   {
    "d": "2026-08-22",
    "t": "20:30",
    "dur": 105,
-   "match": true,
    "zone": "belgica",
    "spot": "Wavre",
-   "title": "★ Las Leonas",
-   "note": "Segunda fase, en el Belfius Hockey Arena de Wavre"
+   "match": true,
+   "title": "★ Las Leonas 3 · España 0",
+   "score": "Clasificadas a la SEMIFINAL",
+   "note": "En el Belfius Hockey Arena de Wavre. El partido por el que armó todo el viaje"
   },
   {
    "d": "2026-08-22",
-   "t": "23:00",
-   "dur": 150,
+   "t": "22:45",
+   "dur": 180,
    "zone": "belgica",
    "spot": "Waterloo",
    "title": "Cóctel con Fer y Pablo",
-   "note": "Invitación de los entrenadores de Las Leonas"
+   "note": "Volvió del estadio a Waterloo con todo el plantel. El traslado que estuvo tres días sin resolverse se arregló solo"
   },
   {
    "d": "2026-08-23",
@@ -247,7 +258,7 @@
    "zone": "ams",
    "spot": "Amstelveen",
    "title": "★ Los Leones vs. India",
-   "note": "Wagener Stadium · West Stand, fila 3, asiento 6"
+   "note": "Wagener Stadium · West Stand, fila 3, asiento 6. Los Leones llegan con 3 puntos"
   },
   {
    "d": "2026-08-24",
@@ -290,8 +301,8 @@
    "pend": true,
    "zone": "ams",
    "spot": "Amstelveen",
-   "title": "Semifinal femenina",
-   "note": "Falta saber si es en Ámsterdam o en Wavre"
+   "title": "★ Semifinal de Las Leonas",
+   "note": "Ya están clasificadas. Falta saber si juegan en Ámsterdam a las 18:00 o en Wavre a las 20:30"
   },
   {
    "d": "2026-08-28",
