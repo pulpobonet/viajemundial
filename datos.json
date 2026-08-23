@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "Doble triunfo argentino. Los Leones 3-1 a Inglaterra y Las Leonas 3-0 a España, clasificadas a semifinal. Vuelta a Waterloo con todo el plantel.",
-  "hora": "23:30"
+  "texto": "Camino a Países Bajos. Mañana lunes, Los Leones contra India en el Wagener de Amstelveen.",
+  "hora": "11:30"
  },
  "eventos": [
   {
@@ -221,32 +221,40 @@
   },
   {
    "d": "2026-08-23",
-   "t": "11:00",
-   "dur": 60,
+   "t": "09:00",
+   "dur": 135,
    "day": "Domingo 23",
-   "place": "Bélgica → Ámsterdam",
+   "place": "Bélgica → Países Bajos",
    "zone": "belgica",
    "spot": "Waterloo",
-   "title": "Deja Waterloo",
-   "note": "Tren hasta Bruselas"
+   "title": "Mañana en Waterloo",
+   "note": "Desayuno y compra del pasaje a Países Bajos. Sin partidos de Argentina en todo el día"
   },
   {
    "d": "2026-08-23",
-   "t": "12:30",
-   "dur": 112,
+   "t": "11:20",
+   "dur": 30,
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "Waterloo → Bruselas-Midi",
+   "note": "Tren S1 con destino Vilvoorde, plataforma 1"
+  },
+  {
+   "d": "2026-08-23",
+   "t": "12:57",
+   "dur": 111,
    "zone": "vuelo",
-   "title": "Eurostar a Ámsterdam",
-   "pend": true,
-   "note": "Falta comprarlo · 1 hora 52 minutos"
+   "title": "Eurocity Direct a Países Bajos",
+   "note": "Bruselas-Midi → Schiphol, 1 h 51 sin transbordos. Llegada 14:48"
   },
   {
    "d": "2026-08-23",
    "t": "15:00",
-   "dur": 180,
+   "dur": 240,
    "zone": "ams",
-   "spot": "Ámsterdam",
-   "title": "Llega al departamento",
-   "note": "Se junta con Pato. Se quedan hasta el 31"
+   "spot": "Schiphol",
+   "title": "Llega al alojamiento",
+   "note": "Amrâth Apart-Hotel Badhoevedorp, al lado de Schiphol. Se junta con Pato. Se quedan hasta el 31"
   },
   {
    "d": "2026-08-24",
@@ -258,7 +266,7 @@
    "zone": "ams",
    "spot": "Amstelveen",
    "title": "★ Los Leones vs. India",
-   "note": "Wagener Stadium · West Stand, fila 3, asiento 6. Los Leones llegan con 3 puntos"
+   "note": "Wagener Stadium · West Stand, fila 3, asiento 6. Los Leones llegan con 3 puntos tras ganarle a Inglaterra. Desde Badhoevedorp queda cerca"
   },
   {
    "d": "2026-08-24",
@@ -274,22 +282,22 @@
    "t": "10:00",
    "dur": 600,
    "day": "Martes 25",
-   "place": "Ámsterdam",
+   "place": "Badhoevedorp",
    "zone": "ams",
-   "spot": "Ámsterdam",
+   "spot": "Schiphol",
    "title": "Día libre",
-   "note": "No hay partidos en ninguna sede"
+   "note": "Sin partidos en ninguna sede. Desde Badhoevedorp: Haarlem y Zandvoort quedan cerca, y Ámsterdam centro a unos 20 minutos en tren desde Schiphol"
   },
   {
    "d": "2026-08-26",
    "t": "10:00",
    "dur": 600,
    "day": "Miércoles 26",
-   "place": "Ámsterdam",
+   "place": "Badhoevedorp",
    "zone": "ams",
-   "spot": "Ámsterdam",
+   "spot": "Schiphol",
    "title": "Día libre",
-   "note": "Utrecht, Haarlem o la playa de Zandvoort"
+   "note": "Sin partidos en ninguna sede. Desde Badhoevedorp: Haarlem y Zandvoort quedan cerca, y Ámsterdam centro a unos 20 minutos en tren desde Schiphol"
   },
   {
    "d": "2026-08-27",
@@ -344,14 +352,14 @@
   },
   {
    "d": "2026-08-31",
-   "t": "04:00",
+   "t": "04:20",
    "dur": 80,
    "day": "Lunes 31",
-   "place": "Ámsterdam → Madrid",
+   "place": "Badhoevedorp → Madrid",
    "zone": "ams",
-   "spot": "Ámsterdam",
+   "spot": "Schiphol",
    "title": "Se levanta de madrugada",
-   "note": "Taxi a Schiphol con Pato"
+   "note": "El alojamiento está a diez minutos de Schiphol, así que se puede dormir un rato más de lo previsto. En el aeropuerto 05:15"
   },
   {
    "d": "2026-08-31",
