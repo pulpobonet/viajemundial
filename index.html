@@ -171,6 +171,10 @@
     letter-spacing:.12em;text-transform:uppercase;padding:.14rem .4rem;border-radius:2px;
     margin-left:.35rem;vertical-align:.12em}
   .pill.pend{background:var(--amber-soft);color:var(--amber)}
+  .ev .galeria{display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem;margin:.6rem 0 .2rem;max-width:430px}
+  .ev .galeria img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border-radius:4px;
+    border:1px solid var(--line);background:var(--card)}
+  .ev .galeria a{display:block;line-height:0}
   .ev figure{margin:.6rem 0 .2rem}
   .ev figure img{width:100%;max-width:420px;display:block;border-radius:4px;
     border:1px solid var(--line);background:var(--card)}
@@ -380,6 +384,70 @@ let EV=[
   spot:"Barajas",title:"Despega a Buenos Aires",note:"El vuelo más esperado"}
 ];
 
+// ---------- clima, vía Open-Meteo (gratis, sin clave) ----------
+const WX_PTS = {
+  norte:   {lat:43.41, lon:-3.41},
+  belgica: {lat:50.71, lon: 4.40},
+  ams:     {lat:52.37, lon: 4.90},
+  madrid:  {lat:40.42, lon:-3.70}
+};
+const WMO = {
+  0:["Despejado","☀"],1:["Casi despejado","🌤"],2:["Parcialmente nublado","⛅"],3:["Nublado","☁"],
+  45:["Niebla","🌫"],48:["Niebla","🌫"],
+  51:["Llovizna","🌦"],53:["Llovizna","🌦"],55:["Llovizna fuerte","🌦"],
+  61:["Lluvia leve","🌧"],63:["Lluvia","🌧"],65:["Lluvia fuerte","🌧"],
+  71:["Nieve","🌨"],73:["Nieve","🌨"],75:["Nieve fuerte","🌨"],
+  80:["Chaparrones","🌦"],81:["Chaparrones","🌦"],82:["Chaparrones fuertes","🌧"],
+  95:["Tormenta","⛈"],96:["Tormenta","⛈"],99:["Tormenta","⛈"]
+};
+let WX = null;
+
+async function cargarClima(){
+  try{
+    const ids = Object.keys(WX_PTS);
+    const lats = ids.map(k=>WX_PTS[k].lat).join(",");
+    const lons = ids.map(k=>WX_PTS[k].lon).join(",");
+    const url = "https://api.open-meteo.com/v1/forecast"+
+      "?latitude="+lats+"&longitude="+lons+
+      "&current=temperature_2m,weather_code"+
+      "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code"+
+      "&timezone=Europe%2FMadrid&forecast_days=14";
+    const r = await fetch(url);
+    if(!r.ok) return;
+    let d = await r.json();
+    if(!Array.isArray(d)) d = [d];
+    WX = {};
+    ids.forEach((k,i)=>{ if(d[i]) WX[k]=d[i]; });
+    pintarClima();
+  }catch(e){ /* sin clima, la página funciona igual */ }
+}
+
+function pintarClima(){
+  if(!WX) return;
+  // por día, en la cabecera
+  EV.forEach(e=>{
+    if(!e.day) return;
+    const el=document.getElementById("wx-"+e.d);
+    const w=WX[e.zone]; if(!el||!w||!w.daily) return;
+    const i=w.daily.time.indexOf(e.d); if(i<0) return;
+    const [txt,ico]=WMO[w.daily.weather_code[i]]||["",""];
+    const lluvia=w.daily.precipitation_probability_max[i];
+    el.textContent = ico+" "+Math.round(w.daily.temperature_2m_max[i])+"° / "+
+      Math.round(w.daily.temperature_2m_min[i])+"°"+
+      (lluvia>=30 ? "  ·  "+lluvia+"% lluvia" : "");
+  });
+  // ahora mismo, en el banner
+  const el=document.getElementById("wxNow");
+  const w=WX[wxZone];
+  if(el && w && w.current){
+    const [txt,ico]=WMO[w.current.weather_code]||["",""];
+    el.hidden=false;
+    el.innerHTML=ico+" <b>"+Math.round(w.current.temperature_2m)+"°</b> "+txt;
+  } else if(el){ el.hidden=true; }
+}
+
+let wxZone="norte";
+
 /* ---------- proyección del mapa ---------- */
 const SC=30, KX=.66, LAT0=53.8, LON0=-9.6;
 const px=(lon,lat)=>[ (lon-LON0)*SC*KX, (LAT0-lat)*SC ];
@@ -423,8 +491,8 @@ const SCENES={
    link:[["Aeropuerto","Waterloo"],["Waterloo","Wavre"]]},
  ams:{pad:.10, pts:[
     {n:"Ámsterdam",lon:4.90,lat:52.37,dy:-7,anchor:"middle"},
-    {n:"Amstelveen",lon:4.86,lat:52.30,dy:13,anchor:"middle"},
-    {n:"Schiphol",lon:4.76,lat:52.31,dy:13,anchor:"middle"}],
+    {n:"Amstelveen",lon:4.86,lat:52.30,dy:15,anchor:"middle"},
+    {n:"Schiphol",lon:4.76,lat:52.31,dy:-8,anchor:"middle"}],
    link:[["Ámsterdam","Amstelveen"]]},
  madrid:{pad:.16, pts:[
     {n:"Madrid",lon:-3.70,lat:40.42,dy:13,anchor:"middle"},
@@ -618,7 +686,7 @@ function tick(){
   const cur=live||last||EV[0];
   drawMini(now,target||cur.zone,cur.spot);
   wxZone = target||cur.zone||"norte";
-  pintarClima();
+  try{ pintarClima(); }catch(e){}
   miniLabel.textContent = target ? (cur.spot||"") : "En viaje";
 }
 
@@ -647,6 +715,10 @@ function render(){
           `<p class="ev-title">${e.title}${e.pend?'<span class="pill pend">sin confirmar</span>':""}</p>`+
           (e.score?`<p class="score">${e.score}</p>`:"")+
           (e.note?`<p class="ev-note">${e.note}</p>`:"")+
+          (Array.isArray(e.fotos)&&e.fotos.length?
+            `<div class="galeria">`+e.fotos.map(f=>
+              `<a href="${f}" target="_blank" rel="noopener"><img loading="lazy" src="${f}" alt="${e.title}" `+
+              `onerror="this.parentElement.remove()"></a>`).join("")+`</div>`:"")+
           (e.foto?`<figure><img loading="lazy" src="${e.foto}" alt="${e.pie||e.title}" onerror="this.closest('figure').remove()">`+
             (e.pie?`<figcaption>${e.pie}</figcaption>`:"")+`</figure>`:"")+
           `</div></div>`;
@@ -658,69 +730,7 @@ function render(){
 try{ render(); drawMap(new Date()); tick(); setInterval(tick,30000); }
 catch(err){ console.error(err); }
 
-// ---------- clima, vía Open-Meteo (gratis, sin clave) ----------
-const WX_PTS = {
-  norte:   {lat:43.41, lon:-3.41},
-  belgica: {lat:50.71, lon: 4.40},
-  ams:     {lat:52.37, lon: 4.90},
-  madrid:  {lat:40.42, lon:-3.70}
-};
-const WMO = {
-  0:["Despejado","☀"],1:["Casi despejado","🌤"],2:["Parcialmente nublado","⛅"],3:["Nublado","☁"],
-  45:["Niebla","🌫"],48:["Niebla","🌫"],
-  51:["Llovizna","🌦"],53:["Llovizna","🌦"],55:["Llovizna fuerte","🌦"],
-  61:["Lluvia leve","🌧"],63:["Lluvia","🌧"],65:["Lluvia fuerte","🌧"],
-  71:["Nieve","🌨"],73:["Nieve","🌨"],75:["Nieve fuerte","🌨"],
-  80:["Chaparrones","🌦"],81:["Chaparrones","🌦"],82:["Chaparrones fuertes","🌧"],
-  95:["Tormenta","⛈"],96:["Tormenta","⛈"],99:["Tormenta","⛈"]
-};
-let WX = null;
 
-async function cargarClima(){
-  try{
-    const ids = Object.keys(WX_PTS);
-    const lats = ids.map(k=>WX_PTS[k].lat).join(",");
-    const lons = ids.map(k=>WX_PTS[k].lon).join(",");
-    const url = "https://api.open-meteo.com/v1/forecast"+
-      "?latitude="+lats+"&longitude="+lons+
-      "&current=temperature_2m,weather_code"+
-      "&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,weather_code"+
-      "&timezone=Europe%2FMadrid&forecast_days=14";
-    const r = await fetch(url);
-    if(!r.ok) return;
-    let d = await r.json();
-    if(!Array.isArray(d)) d = [d];
-    WX = {};
-    ids.forEach((k,i)=>{ if(d[i]) WX[k]=d[i]; });
-    pintarClima();
-  }catch(e){ /* sin clima, la página funciona igual */ }
-}
-
-function pintarClima(){
-  if(!WX) return;
-  // por día, en la cabecera
-  EV.forEach(e=>{
-    if(!e.day) return;
-    const el=document.getElementById("wx-"+e.d);
-    const w=WX[e.zone]; if(!el||!w||!w.daily) return;
-    const i=w.daily.time.indexOf(e.d); if(i<0) return;
-    const [txt,ico]=WMO[w.daily.weather_code[i]]||["",""];
-    const lluvia=w.daily.precipitation_probability_max[i];
-    el.textContent = ico+" "+Math.round(w.daily.temperature_2m_max[i])+"° / "+
-      Math.round(w.daily.temperature_2m_min[i])+"°"+
-      (lluvia>=30 ? "  ·  "+lluvia+"% lluvia" : "");
-  });
-  // ahora mismo, en el banner
-  const el=document.getElementById("wxNow");
-  const w=WX[wxZone];
-  if(el && w && w.current){
-    const [txt,ico]=WMO[w.current.weather_code]||["",""];
-    el.hidden=false;
-    el.innerHTML=ico+" <b>"+Math.round(w.current.temperature_2m)+"°</b> "+txt;
-  } else if(el){ el.hidden=true; }
-}
-
-let wxZone="norte";
 
 // Los datos viven en datos.json, al lado de este archivo.
 // Editarlo desde el celular actualiza la página sin tocar nada más.

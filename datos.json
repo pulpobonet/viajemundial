@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "Ya en Países Bajos, con Pato. Mañana a las 14:45, Los Leones contra India en el Wagener.",
-  "hora": "19:00"
+  "texto": "Ya subí las fotos de Laredo, Wavre y el mercado del domingo. Mañana, Los Leones contra India.",
+  "hora": "20:30"
  },
  "eventos": [
   {
@@ -120,9 +120,15 @@
    "zone": "norte",
    "spot": "Laredo",
    "title": "Bici por el paseo marítimo",
-   "note": "Playa de La Salvé hasta El Puntal, unos 12 km llanos con el atardecer sobre la bahía",
+   "note": "Playa de La Salvé hasta El Puntal, unos 12 km llanos. Y al volver, la bahía entera desde arriba con el monte Buciero enfrente y una cerveza mirando el atardecer",
    "foto": "fotos/laredo-bici.jpg",
-   "pie": ""
+   "pie": "",
+   "fotos": [
+    "fotos/laredo-vista.jpg",
+    "fotos/laredo-atardecer.jpg",
+    "fotos/laredo-anochecer.jpg",
+    "fotos/laredo-cerveza.jpg"
+   ]
   },
   {
    "d": "2026-08-22",
@@ -186,7 +192,11 @@
    "zone": "belgica",
    "spot": "Waterloo",
    "title": "La odisea hasta Wavre",
-   "note": "El bus TEC 125 no opera los sábados. Tren a Etterbeek, espera, tren a Ottignies y de ahí a Wavre. Tres horas y media de andenes, pero llegó a tiempo para todo"
+   "note": "El bus TEC 125 no opera los sábados. Tren a Etterbeek, espera, tren a Ottignies y de ahí a Wavre. Tres horas y media de andenes, pero llegó a tiempo para todo",
+   "fotos": [
+    "fotos/wavre-ingreso.jpg",
+    "fotos/wavre-palos.jpg"
+   ]
   },
   {
    "d": "2026-08-22",
@@ -197,7 +207,11 @@
    "match": true,
    "title": "★ Los Leones 3 · Inglaterra 1",
    "score": "Otro hat-trick de Domene, el segundo del Mundial",
-   "note": "Se jugaba en Amstelveen y lo vio en la pantalla gigante del estadio de Wavre, ya adentro"
+   "note": "Se jugaba en Amstelveen y lo vio en la pantalla gigante del estadio de Wavre, ya adentro",
+   "fotos": [
+    "fotos/wavre-pantalla.jpg",
+    "fotos/wavre-fanzone.jpg"
+   ]
   },
   {
    "d": "2026-08-22",
@@ -208,7 +222,13 @@
    "match": true,
    "title": "★ Las Leonas 3 · España 0",
    "score": "Clasificadas a la SEMIFINAL",
-   "note": "En el Belfius Hockey Arena de Wavre. El partido por el que armó todo el viaje"
+   "note": "En el Belfius Hockey Arena de Wavre. El partido por el que armó todo el viaje",
+   "fotos": [
+    "fotos/wavre-precalentamiento.jpg",
+    "fotos/leonas-hinchada.jpg",
+    "fotos/leonas-festejo.jpg",
+    "fotos/wavre-noche.jpg"
+   ]
   },
   {
    "d": "2026-08-22",
@@ -222,13 +242,31 @@
   {
    "d": "2026-08-23",
    "t": "09:00",
-   "dur": 135,
+   "dur": 30,
    "day": "Domingo 23",
    "place": "Bélgica → Países Bajos",
    "zone": "belgica",
    "spot": "Waterloo",
    "title": "Mañana en Waterloo",
    "note": "Desayuno y compra del pasaje a Países Bajos. Sin partidos de Argentina en todo el día"
+  },
+  {
+   "d": "2026-08-23",
+   "t": "09:30",
+   "dur": 90,
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "El mercado del domingo",
+   "note": "Panadería de pueblo, quesos de granja, un chocolatero en una Citroën vieja, café tostado ahí mismo y un puesto de golosinas. Domingo belga como corresponde",
+   "fotos": [
+    "fotos/mercado-panaderia.jpg",
+    "fotos/mercado-quesos.jpg",
+    "fotos/mercado-chocolate.jpg",
+    "fotos/mercado-chocolatero.jpg",
+    "fotos/mercado-cafe.jpg",
+    "fotos/mercado-italiano.jpg",
+    "fotos/mercado-golosinas.jpg"
+   ]
   },
   {
    "d": "2026-08-23",
