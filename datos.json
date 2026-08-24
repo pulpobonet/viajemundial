@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "Ya subí las fotos de Laredo, Wavre y el mercado del domingo. Mañana, Los Leones contra India.",
-  "hora": "20:30"
+  "texto": "Día completo en el Wagener. Los Leones contra India a las 14:45 se juegan la semifinal. Las Leonas ya están clasificadas.",
+  "hora": "09:00"
  },
  "eventos": [
   {
@@ -314,10 +314,19 @@
   },
   {
    "d": "2026-08-24",
-   "t": "14:45",
+   "t": "12:30",
    "dur": 105,
    "day": "Lunes 24",
    "place": "Amstelveen",
+   "zone": "ams",
+   "spot": "Amstelveen",
+   "title": "Día completo en el Wagener",
+   "note": "La entrada habilita desde las 8:30 y vale para los cuatro partidos de la jornada, así que van temprano a ver el anterior"
+  },
+  {
+   "d": "2026-08-24",
+   "t": "14:45",
+   "dur": 105,
    "match": true,
    "zone": "ams",
    "spot": "Amstelveen",
@@ -330,8 +339,8 @@
    "dur": 105,
    "zone": "ams",
    "spot": "Amstelveen",
-   "title": "Países Bajos, con la misma entrada",
-   "note": "Los locales juegan después. Entra al estadio a las 14"
+   "title": "Países Bajos vs. Inglaterra",
+   "note": "Los locales cierran la jornada, con la misma entrada"
   },
   {
    "d": "2026-08-25",
@@ -444,6 +453,104 @@
    "spot": "Barajas",
    "title": "Despega a Buenos Aires",
    "note": "El vuelo más esperado"
+  }
+ ],
+ "posiciones": [
+  {
+   "titulo": "Grupo E · Masculino",
+   "sede": "Wagener Stadium, Amstelveen · fecha 1 jugada",
+   "filas": [
+    {
+     "eq": "Países Bajos",
+     "pts": 6,
+     "pj": 2,
+     "g": 2,
+     "e": 0,
+     "p": 0,
+     "gf": 6,
+     "gc": 2
+    },
+    {
+     "eq": "Argentina",
+     "pts": 3,
+     "pj": 2,
+     "g": 1,
+     "e": 0,
+     "p": 1,
+     "gf": 4,
+     "gc": 4,
+     "arg": true
+    },
+    {
+     "eq": "Inglaterra",
+     "pts": 3,
+     "pj": 2,
+     "g": 1,
+     "e": 0,
+     "p": 1,
+     "gf": 5,
+     "gc": 5
+    },
+    {
+     "eq": "India",
+     "pts": 0,
+     "pj": 2,
+     "g": 0,
+     "e": 0,
+     "p": 2,
+     "gf": 3,
+     "gc": 7
+    }
+   ],
+   "pie": "Argentina está segunda por haberle ganado a Inglaterra. Hoy juega contra India a las 14:45 y se define la semifinal. Después, Países Bajos vs. Inglaterra a las 18:00."
+  },
+  {
+   "titulo": "Grupo F · Femenino",
+   "sede": "Belfius Hockey Arena, Wavre · fecha 1 jugada",
+   "filas": [
+    {
+     "eq": "Argentina",
+     "pts": 6,
+     "pj": 2,
+     "g": 2,
+     "e": 0,
+     "p": 0,
+     "gf": 6,
+     "gc": 2,
+     "arg": true
+    },
+    {
+     "eq": "Bélgica",
+     "pts": 4,
+     "pj": 2,
+     "g": 1,
+     "e": 1,
+     "p": 0,
+     "gf": 4,
+     "gc": 2
+    },
+    {
+     "eq": "España",
+     "pts": 1,
+     "pj": 2,
+     "g": 0,
+     "e": 1,
+     "p": 1,
+     "gf": 1,
+     "gc": 4
+    },
+    {
+     "eq": "Alemania",
+     "pts": 0,
+     "pj": 2,
+     "g": 0,
+     "e": 0,
+     "p": 2,
+     "gf": 3,
+     "gc": 6
+    }
+   ],
+   "pie": "Las Leonas ya están en semifinales, con una fecha de anticipación. Hoy cierran contra Bélgica a las 20:30 en Wavre."
   }
  ]
 }

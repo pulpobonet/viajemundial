@@ -183,6 +183,31 @@
   .score{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--amber);
     font-size:.8rem;margin-top:.2rem}
 
+  .tabs{display:flex;gap:.4rem;border-bottom:2px solid var(--ink);margin:0 0 1.2rem}
+  .tabs button{flex:1;appearance:none;background:none;border:0;cursor:pointer;
+    font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-2);padding:.7rem .3rem;
+    border-bottom:3px solid transparent;margin-bottom:-2px;transition:color .15s}
+  .tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--celeste);font-weight:600}
+  .panel[hidden]{display:none}
+  .tabla{margin-bottom:1.3rem}
+  .tabla h3{font-family:'Anton',sans-serif;text-transform:uppercase;font-size:1.15rem;
+    color:var(--ink);margin-bottom:.1rem}
+  .tabla .sede{font-size:.76rem;color:var(--ink-2);margin-bottom:.5rem}
+  .tabla table{width:100%;border-collapse:collapse;font-size:.82rem}
+  .tabla th{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;
+    text-transform:uppercase;color:var(--ink-2);font-weight:400;text-align:right;
+    padding:.3rem .25rem;border-bottom:2px solid var(--ink)}
+  .tabla th:first-child,.tabla th:nth-child(2){text-align:left}
+  .tabla td{padding:.42rem .25rem;text-align:right;border-bottom:1px solid var(--line);
+    font-variant-numeric:tabular-nums;font-family:'IBM Plex Mono',monospace;color:var(--ink-2)}
+  .tabla td:nth-child(2){text-align:left;font-family:'IBM Plex Sans',sans-serif;color:var(--ink)}
+  .tabla td:first-child{color:var(--ink-2);width:1.6rem;text-align:left}
+  .tabla td.pts{font-weight:600;color:var(--ink)}
+  .tabla tr.arg td{background:var(--celeste-soft)}
+  .tabla tr.arg td:nth-child(2){font-weight:600;color:var(--celeste)}
+  .tabla tr.clasifica td:first-child{box-shadow:inset 3px 0 0 var(--celeste)}
+  .tabla .pie{font-size:.74rem;color:var(--ink-2);margin-top:.45rem;line-height:1.5}
   .cards{display:grid;gap:.7rem;grid-template-columns:1fr}
   @media(min-width:520px){.cards{grid-template-columns:1fr 1fr}}
   .card{background:var(--card);border:1px solid var(--line);border-radius:3px;padding:.85rem .95rem}
@@ -243,6 +268,12 @@
 
 <div class="wrap">
 
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-viaje" aria-controls="panel-viaje" aria-selected="true">El viaje</button>
+    <button role="tab" id="tab-copa" aria-controls="panel-copa" aria-selected="false">El Mundial</button>
+  </nav>
+
+  <div class="panel" id="panel-viaje" role="tabpanel" aria-labelledby="tab-viaje">
   <h2>El mapa</h2>
   <div class="mapbox">
     <svg id="map" viewBox="-6 -6 350 478" role="img"
@@ -311,6 +342,12 @@
       <h3>La vuelta</h3>
       <p>Sale de Schiphol el lunes 31 a las 7:20 y duerme en Madrid. El martes 1° despega a Buenos Aires a las 10:55.</p>
     </div>
+  </div>
+
+  </div>
+
+  <div class="panel" id="panel-copa" role="tabpanel" aria-labelledby="tab-copa" hidden>
+    <div id="posiciones"></div>
   </div>
 
   <footer>
@@ -698,6 +735,25 @@ function drawRoutes(now){
   });
 }
 
+function pintarPosiciones(grupos){
+  const cont=document.getElementById("posiciones");
+  if(!cont) return;
+  if(!Array.isArray(grupos)||!grupos.length){ cont.innerHTML=""; return; }
+  cont.innerHTML = `<h2>Cómo van los grupos</h2>` + grupos.map(g=>
+    `<div class="tabla"><h3>${g.titulo}</h3>`+
+    (g.sede?`<p class="sede">${g.sede}</p>`:"")+
+    `<table><thead><tr><th></th><th>Equipo</th><th>Pts</th><th>PJ</th>`+
+    `<th>G</th><th>E</th><th>P</th><th>GF</th><th>GC</th></tr></thead><tbody>`+
+    g.filas.map((f,i)=>{
+      const cls=[]; if(f.arg) cls.push("arg"); if(i<2) cls.push("clasifica");
+      return `<tr class="${cls.join(" ")}"><td>${i+1}</td><td>${f.eq}</td>`+
+        `<td class="pts">${f.pts}</td><td>${f.pj}</td><td>${f.g}</td>`+
+        `<td>${f.e}</td><td>${f.p}</td><td>${f.gf}</td><td>${f.gc}</td></tr>`;
+    }).join("")+
+    `</tbody></table>`+(g.pie?`<p class="pie">${g.pie}</p>`:"")+`</div>`
+  ).join("");
+}
+
 function render(){
   let html="",open=false;
   EV.forEach((e,i)=>{
@@ -740,6 +796,7 @@ async function cargarDatos(){
     if(!r.ok) return;
     const d = await r.json();
     if(Array.isArray(d.eventos) && d.eventos.length){ EV = d.eventos; render(); }
+    pintarPosiciones(d.posiciones);
     const n = document.getElementById("novedad");
     if(d.novedad && d.novedad.texto){
       n.hidden = false;
@@ -748,6 +805,18 @@ async function cargarDatos(){
     tick();
   }catch(e){ /* si no está el archivo, queda lo que ya vino escrito */ }
 }
+// pestañas
+document.querySelectorAll('.tabs button').forEach(b=>{
+  b.addEventListener("click", ()=>{
+    document.querySelectorAll('.tabs button').forEach(o=>{
+      const on = (o===b);
+      o.setAttribute("aria-selected", on);
+      document.getElementById(o.getAttribute("aria-controls")).hidden = !on;
+    });
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+});
+
 cargarDatos();
 setInterval(cargarDatos, 120000);
 cargarClima();
