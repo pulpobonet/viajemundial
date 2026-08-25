@@ -183,6 +183,20 @@
   .score{font-family:'IBM Plex Mono',monospace;font-weight:600;color:var(--amber);
     font-size:.8rem;margin-top:.2rem}
 
+  .cruce{background:var(--card);border:1px solid var(--line);border-radius:3px;
+    padding:.85rem .95rem;margin-bottom:.7rem}
+  .cruce .cab{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--ink-2);margin-bottom:.55rem}
+  .cruce .par{display:flex;align-items:baseline;gap:.5rem;font-size:1.05rem;
+    font-family:'Anton',sans-serif;text-transform:uppercase;color:var(--ink);line-height:1.2}
+  .cruce .par .vs{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--ink-2);
+    font-weight:400}
+  .cruce.arg{border-color:var(--celeste);border-left-width:4px}
+  .cruce.arg .par{color:var(--celeste)}
+  .cruce .donde{font-size:.8rem;color:var(--ink-2);margin-top:.4rem;line-height:1.5}
+  .cruce .vas{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.58rem;
+    letter-spacing:.12em;text-transform:uppercase;background:var(--celeste);color:#fff;
+    padding:.15rem .45rem;border-radius:2px;margin-top:.45rem}
   .tabs{display:flex;gap:.4rem;border-bottom:2px solid var(--ink);margin:0 0 1.2rem}
   .tabs button{flex:1;appearance:none;background:none;border:0;cursor:pointer;
     font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.14em;
@@ -347,6 +361,7 @@
   </div>
 
   <div class="panel" id="panel-copa" role="tabpanel" aria-labelledby="tab-copa" hidden>
+    <div id="cruces"></div>
     <div id="posiciones"></div>
   </div>
 
@@ -735,6 +750,21 @@ function drawRoutes(now){
   });
 }
 
+function pintarCruces(bloques){
+  const cont=document.getElementById("cruces");
+  if(!cont) return;
+  if(!Array.isArray(bloques)||!bloques.length){ cont.innerHTML=""; return; }
+  cont.innerHTML = bloques.map(b=>
+    `<h2>${b.titulo}</h2>` + b.partidos.map(p=>
+      `<div class="cruce${p.arg?" arg":""}">`+
+      `<p class="cab">${p.instancia}</p>`+
+      `<p class="par">${p.a} <span class="vs">vs</span> ${p.b}</p>`+
+      `<p class="donde">${p.cuando} · ${p.sede}</p>`+
+      (p.vas?`<span class="vas">${p.vas}</span>`:"")+
+      `</div>`).join("")
+  ).join("");
+}
+
 function pintarPosiciones(grupos){
   const cont=document.getElementById("posiciones");
   if(!cont) return;
@@ -796,6 +826,7 @@ async function cargarDatos(){
     if(!r.ok) return;
     const d = await r.json();
     if(Array.isArray(d.eventos) && d.eventos.length){ EV = d.eventos; render(); }
+    pintarCruces(d.cruces);
     pintarPosiciones(d.posiciones);
     const n = document.getElementById("novedad");
     if(d.novedad && d.novedad.texto){

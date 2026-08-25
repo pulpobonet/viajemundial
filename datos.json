@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "Día completo en el Wagener. Los Leones contra India a las 14:45 se juegan la semifinal. Las Leonas ya están clasificadas.",
-  "hora": "09:00"
+  "texto": "Argentina vs. Alemania el viernes 28 a las 20:30 en Wavre. Las Leonas contra Australia el jueves, también en Wavre.",
+  "hora": "12:00"
  },
  "eventos": [
   {
@@ -9,7 +9,7 @@
    "t": "02:15",
    "dur": 235,
    "day": "Jueves 20",
-   "place": "Madrid → Bilbao",
+   "place": "Madrid → Laredo",
    "zone": "norte",
    "spot": "Madrid",
    "title": "Bus de noche desde Madrid",
@@ -330,8 +330,9 @@
    "match": true,
    "zone": "ams",
    "spot": "Amstelveen",
-   "title": "★ Los Leones vs. India",
-   "note": "Wagener Stadium · West Stand, fila 3, asiento 6. Los Leones llegan con 3 puntos tras el 3-1 a Inglaterra. Nieuwe Kalfjeslaan 18, Amstelveen"
+   "title": "★ Los Leones 5 · India 3",
+   "note": "Wagener Stadium · West Stand, fila 3, asiento 6. Los Leones llegan con 3 puntos tras el 3-1 a Inglaterra. Nieuwe Kalfjeslaan 18, Amstelveen",
+   "score": "Con este triunfo, Argentina llegó a 6 puntos"
   },
   {
    "d": "2026-08-24",
@@ -339,68 +340,123 @@
    "dur": 105,
    "zone": "ams",
    "spot": "Amstelveen",
-   "title": "Países Bajos vs. Inglaterra",
-   "note": "Los locales cierran la jornada, con la misma entrada"
+   "title": "Países Bajos 2 · Inglaterra 2",
+   "note": "Visto desde la tribuna, con la calculadora en la mano",
+   "score": "El empate metió a LOS LEONES en SEMIFINALES",
+   "match": true
+  },
+  {
+   "d": "2026-08-24",
+   "t": "20:30",
+   "dur": 105,
+   "zone": "belgica",
+   "match": true,
+   "title": "Las Leonas 0 · Bélgica 0",
+   "score": "Primeras del Grupo F. Se quedan en Wavre para la semifinal",
+   "note": "Se jugaba en Wavre mientras papá estaba en Amstelveen"
   },
   {
    "d": "2026-08-25",
-   "t": "10:00",
-   "dur": 600,
+   "t": "11:00",
+   "dur": 540,
    "day": "Martes 25",
-   "place": "Badhoevedorp",
+   "place": "Ámsterdam",
    "zone": "ams",
-   "spot": "Schiphol",
-   "title": "Día libre",
-   "note": "Sin partidos en ninguna sede. Desde Badhoevedorp: Haarlem y Zandvoort quedan cerca, y Ámsterdam centro a unos 20 minutos en tren desde Schiphol"
+   "spot": "Ámsterdam",
+   "title": "Paseo por el centro de Ámsterdam",
+   "note": "Sin hockey en ninguna sede. Los canales, el casco viejo y la ciudad a pie"
   },
   {
    "d": "2026-08-26",
-   "t": "10:00",
-   "dur": 600,
+   "t": "11:00",
+   "dur": 420,
    "day": "Miércoles 26",
-   "place": "Badhoevedorp",
+   "place": "Ámsterdam y Almere",
    "zone": "ams",
-   "spot": "Schiphol",
+   "spot": "Ámsterdam",
    "title": "Día libre",
-   "note": "Sin partidos en ninguna sede. Desde Badhoevedorp: Haarlem y Zandvoort quedan cerca, y Ámsterdam centro a unos 20 minutos en tren desde Schiphol"
+   "note": "Segundo día sin partidos en ninguna sede"
+  },
+  {
+   "d": "2026-08-26",
+   "t": "20:00",
+   "dur": 210,
+   "zone": "ams",
+   "spot": "Ámsterdam",
+   "title": "★ Cena en lo de María, en Almere",
+   "note": "La noche más linda de la semana: una mesa, comida casera y sobremesa"
   },
   {
    "d": "2026-08-27",
-   "t": "18:00",
-   "dur": 120,
+   "t": "11:00",
+   "dur": 360,
    "day": "Jueves 27",
-   "place": "Amstelveen",
-   "match": true,
-   "pend": true,
+   "place": "Haarlem y Zandvoort",
    "zone": "ams",
-   "spot": "Amstelveen",
-   "title": "★ Semifinal de Las Leonas",
-   "note": "Ya están clasificadas. Falta saber si juegan en Ámsterdam a las 18:00 o en Wavre a las 20:30"
+   "spot": "Ámsterdam",
+   "title": "Haarlem y la playa de Zandvoort",
+   "note": "Las dos quedan a un rato en tren desde Schiphol. Haarlem es el casco antiguo que Ámsterdam ya no tiene, y Zandvoort es mar del Norte"
+  },
+  {
+   "d": "2026-08-27",
+   "t": "20:30",
+   "dur": 120,
+   "zone": "ams",
+   "spot": "Ámsterdam",
+   "match": true,
+   "title": "★ Argentina vs. Australia, por TV",
+   "note": "Semifinal femenina, 20:30 en Wavre. Si ganan, el sábado juegan la final en el Wagener"
   },
   {
    "d": "2026-08-28",
-   "t": "18:00",
-   "dur": 120,
+   "t": "17:00",
+   "dur": 180,
    "day": "Viernes 28",
-   "place": "Amstelveen",
+   "place": "Wavre, en auto",
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "Viaje a Wavre en auto",
+   "note": "Van con un amigo de Pato. Unos 200 km, 2 h 15. Ticket de estacionamiento comprado: el perímetro del estadio está cerrado al tránsito"
+  },
+  {
+   "d": "2026-08-28",
+   "t": "20:30",
+   "dur": 120,
+   "zone": "belgica",
+   "spot": "Wavre",
    "match": true,
-   "zone": "ams",
-   "spot": "Amstelveen",
-   "title": "Semifinal masculina",
-   "note": "Wagener Stadium · East Stand, fila 18, asiento 25"
+   "title": "★ ARGENTINA vs. ALEMANIA",
+   "note": "Semifinal masculina, 20:30 en el Belfius Hockey Arena de Wavre. Entrada cambiada para estar acá"
+  },
+  {
+   "d": "2026-08-28",
+   "t": "22:45",
+   "dur": 150,
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "Vuelta a Badhoevedorp",
+   "note": "En auto, llegando cerca de la una de la mañana"
   },
   {
    "d": "2026-08-29",
    "t": "16:00",
-   "dur": 120,
+   "dur": 150,
    "day": "Sábado 29",
    "place": "Amstelveen",
-   "match": true,
-   "pend": true,
    "zone": "ams",
    "spot": "Amstelveen",
-   "title": "Final femenina",
-   "note": "Entrada agotada, sigue buscando"
+   "match": true,
+   "title": "★ FINAL FEMENINA",
+   "note": "Wagener Stadium. Entrada comprada. A las 13:00 se juega el tercer puesto"
+  },
+  {
+   "d": "2026-08-29",
+   "t": "22:00",
+   "dur": 60,
+   "zone": "ams",
+   "spot": "Ámsterdam",
+   "title": "Dejar las valijas hechas",
+   "note": "El domingo puede haber final en Wavre y el lunes se sale a las 4:20"
   },
   {
    "d": "2026-08-30",
@@ -420,7 +476,7 @@
    "t": "04:20",
    "dur": 80,
    "day": "Lunes 31",
-   "place": "Badhoevedorp → Madrid",
+   "place": "Vuelta a Madrid",
    "zone": "ams",
    "spot": "Schiphol",
    "title": "Se levanta de madrugada",
@@ -458,51 +514,51 @@
  "posiciones": [
   {
    "titulo": "Grupo E · Masculino",
-   "sede": "Wagener Stadium, Amstelveen · fecha 1 jugada",
+   "sede": "Wagener Stadium, Amstelveen · grupo terminado",
    "filas": [
     {
      "eq": "Países Bajos",
-     "pts": 6,
-     "pj": 2,
+     "pts": 7,
+     "pj": 3,
      "g": 2,
-     "e": 0,
+     "e": 1,
      "p": 0,
-     "gf": 6,
-     "gc": 2
+     "gf": 8,
+     "gc": 4
     },
     {
      "eq": "Argentina",
-     "pts": 3,
-     "pj": 2,
-     "g": 1,
+     "pts": 6,
+     "pj": 3,
+     "g": 2,
      "e": 0,
      "p": 1,
-     "gf": 4,
-     "gc": 4,
+     "gf": 9,
+     "gc": 7,
      "arg": true
     },
     {
      "eq": "Inglaterra",
-     "pts": 3,
-     "pj": 2,
+     "pts": 4,
+     "pj": 3,
      "g": 1,
-     "e": 0,
+     "e": 1,
      "p": 1,
-     "gf": 5,
-     "gc": 5
+     "gf": 7,
+     "gc": 7
     },
     {
      "eq": "India",
      "pts": 0,
-     "pj": 2,
+     "pj": 3,
      "g": 0,
      "e": 0,
-     "p": 2,
-     "gf": 3,
-     "gc": 7
+     "p": 3,
+     "gf": 6,
+     "gc": 12
     }
    ],
-   "pie": "Argentina está segunda por haberle ganado a Inglaterra. Hoy juega contra India a las 14:45 y se define la semifinal. Después, Países Bajos vs. Inglaterra a las 18:00."
+   "pie": "LOS LEONES ESTÁN EN SEMIFINALES. Juegan el viernes 28 a las 20:30 en Wavre."
   },
   {
    "titulo": "Grupo F · Femenino",
@@ -551,6 +607,71 @@
     }
    ],
    "pie": "Las Leonas ya están en semifinales, con una fecha de anticipación. Hoy cierran contra Bélgica a las 20:30 en Wavre."
+  }
+ ],
+ "cruces": [
+  {
+   "titulo": "Semifinales femeninas · jueves 27",
+   "partidos": [
+    {
+     "instancia": "Semifinal 1",
+     "a": "Argentina",
+     "b": "Australia",
+     "arg": true,
+     "cuando": "Jueves 27, 20:30",
+     "sede": "Belfius Hockey Arena, Wavre",
+     "vas": "Se mira por TV"
+    },
+    {
+     "instancia": "Semifinal 2",
+     "a": "Bélgica",
+     "b": "Países Bajos",
+     "cuando": "Jueves 27, 18:00 (a confirmar)",
+     "sede": "Wagener Stadium, Amstelveen"
+    }
+   ]
+  },
+  {
+   "titulo": "Semifinales masculinas · viernes 28",
+   "partidos": [
+    {
+     "instancia": "Semifinal 1",
+     "a": "Argentina",
+     "b": "Alemania",
+     "arg": true,
+     "cuando": "Viernes 28, 20:30",
+     "sede": "Belfius Hockey Arena, Wavre",
+     "vas": "Papá va a estar ahí"
+    },
+    {
+     "instancia": "Semifinal 2",
+     "a": "España",
+     "b": "Países Bajos",
+     "cuando": "Viernes 28, 18:00 (a confirmar)",
+     "sede": "Wagener Stadium, Amstelveen"
+    }
+   ]
+  },
+  {
+   "titulo": "Las finales",
+   "partidos": [
+    {
+     "instancia": "Final femenina",
+     "a": "Por definirse",
+     "b": "Por definirse",
+     "arg": true,
+     "cuando": "Sábado 29, 16:00",
+     "sede": "Wagener Stadium, Amstelveen",
+     "vas": "Papá va a estar ahí"
+    },
+    {
+     "instancia": "Final masculina",
+     "a": "Por definirse",
+     "b": "Por definirse",
+     "cuando": "Domingo 30, 16:30",
+     "sede": "Belfius Hockey Arena, Wavre"
+    }
+   ]
   }
  ]
 }
