@@ -1,6 +1,6 @@
 {
  "novedad": {
-  "texto": "Argentina vs. Alemania el viernes 28 a las 20:30 en Wavre. Las Leonas contra Australia el jueves, también en Wavre.",
+  "texto": "Esta noche, la semifinal de Las Leonas contra Australia. Mañana, Bélgica: Amberes de día y Alemania-Argentina a la noche.",
   "hora": "12:00"
  },
  "eventos": [
@@ -368,34 +368,39 @@
   },
   {
    "d": "2026-08-26",
-   "t": "11:00",
+   "t": "15:00",
    "dur": 420,
    "day": "Miércoles 26",
-   "place": "Ámsterdam y Almere",
+   "place": "Zandvoort",
    "zone": "ams",
    "spot": "Ámsterdam",
-   "title": "Día libre",
-   "note": "Segundo día sin partidos en ninguna sede"
-  },
-  {
-   "d": "2026-08-26",
-   "t": "20:00",
-   "dur": 210,
-   "zone": "ams",
-   "spot": "Ámsterdam",
-   "title": "★ Cena en lo de María, en Almere",
-   "note": "La noche más linda de la semana: una mesa, comida casera y sobremesa"
+   "title": "★ Zandvoort, el mar del Norte",
+   "note": "Playa ancha, olas de verdad y los molinos eólicos en el horizonte. El día salió espectacular y el atardecer sobre el agua se estiró hasta las nueve",
+   "fotos": [
+    "fotos/zandvoort-sol.jpg",
+    "fotos/zandvoort-atardecer.jpg",
+    "fotos/zandvoort-fer.jpg"
+   ]
   },
   {
    "d": "2026-08-27",
-   "t": "11:00",
-   "dur": 360,
+   "t": "13:00",
+   "dur": 180,
    "day": "Jueves 27",
-   "place": "Haarlem y Zandvoort",
+   "place": "Bloemendaal y Utrecht",
    "zone": "ams",
    "spot": "Ámsterdam",
-   "title": "Haarlem y la playa de Zandvoort",
-   "note": "Las dos quedan a un rato en tren desde Schiphol. Haarlem es el casco antiguo que Ámsterdam ya no tiene, y Zandvoort es mar del Norte"
+   "title": "Almuerzo en lo de Santi",
+   "note": "Cerca de Bloemendaal, del lado del mar"
+  },
+  {
+   "d": "2026-08-27",
+   "t": "17:00",
+   "dur": 150,
+   "zone": "ams",
+   "spot": "Ámsterdam",
+   "title": "Entrenamiento en el Kampong",
+   "note": "En Utrecht, uno de los clubes de hockey más grandes del mundo, para ver entrenar a Ale Verga"
   },
   {
    "d": "2026-08-27",
@@ -405,18 +410,46 @@
    "spot": "Ámsterdam",
    "match": true,
    "title": "★ Argentina vs. Australia, por TV",
-   "note": "Semifinal femenina, 20:30 en Wavre. Si ganan, el sábado juegan la final en el Wagener"
+   "note": "Semifinal de Las Leonas, en Wavre. Si ganan, el sábado juegan la final en el Wagener y papá está ahí"
   },
   {
    "d": "2026-08-28",
-   "t": "17:00",
-   "dur": 180,
+   "t": "09:00",
+   "dur": 120,
    "day": "Viernes 28",
-   "place": "Wavre, en auto",
+   "place": "Amberes y Wavre",
    "zone": "belgica",
    "spot": "Waterloo",
-   "title": "Viaje a Wavre en auto",
-   "note": "Van con un amigo de Pato. Unos 200 km, 2 h 15. Ticket de estacionamiento comprado: el perímetro del estadio está cerrado al tránsito"
+   "title": "Salida hacia Bélgica en auto",
+   "note": "Pato retira el auto en Schiphol y arrancan temprano. Unos 160 km hasta Amberes"
+  },
+  {
+   "d": "2026-08-28",
+   "t": "11:00",
+   "dur": 300,
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "★ Un día en Amberes",
+   "note": "Dejan el auto en el P+R Luchtbal, a 1 € por seis horas, y entran en tranvía. La terraza del MAS, Het Steen, el túnel de San Anna bajo el río Escalda con sus escaleras mecánicas de madera de 1933, y almuerzo en la Grote Markt"
+  },
+  {
+   "d": "2026-08-28",
+   "t": "16:00",
+   "dur": 90,
+   "zone": "belgica",
+   "spot": "Waterloo",
+   "title": "Amberes → Wavre",
+   "note": "85 km, poco más de una hora. Estacionamiento oficial reservado, con shuttle gratis hasta el estadio"
+  },
+  {
+   "d": "2026-08-28",
+   "t": "18:15",
+   "dur": 105,
+   "zone": "belgica",
+   "spot": "Wavre",
+   "match": true,
+   "title": "Bélgica vs. India",
+   "note": "Los Red Lions de local, por el 7º puesto. Entran con la misma entrada del día"
   },
   {
    "d": "2026-08-28",
@@ -425,8 +458,8 @@
    "zone": "belgica",
    "spot": "Wavre",
    "match": true,
-   "title": "★ ARGENTINA vs. ALEMANIA",
-   "note": "Semifinal masculina, 20:30 en el Belfius Hockey Arena de Wavre. Entrada cambiada para estar acá"
+   "title": "★ ALEMANIA vs. ARGENTINA",
+   "note": "SEMIFINAL del Mundial, en el Belfius Hockey Arena de Wavre. Alemania es el campeón defensor. Domene llega como goleador del torneo, con ocho"
   },
   {
    "d": "2026-08-28",
@@ -435,7 +468,7 @@
    "zone": "belgica",
    "spot": "Waterloo",
    "title": "Vuelta a Badhoevedorp",
-   "note": "En auto, llegando cerca de la una de la mañana"
+   "note": "200 km en auto, llegando cerca de la una de la mañana"
   },
   {
    "d": "2026-08-29",
@@ -624,9 +657,9 @@
     },
     {
      "instancia": "Semifinal 2",
-     "a": "Bélgica",
-     "b": "Países Bajos",
-     "cuando": "Jueves 27, 18:00 (a confirmar)",
+     "a": "Países Bajos",
+     "b": "Bélgica",
+     "cuando": "Jueves 27, 18:00",
      "sede": "Wagener Stadium, Amstelveen"
     }
    ]
@@ -636,8 +669,8 @@
    "partidos": [
     {
      "instancia": "Semifinal 1",
-     "a": "Argentina",
-     "b": "Alemania",
+     "a": "Alemania",
+     "b": "Argentina",
      "arg": true,
      "cuando": "Viernes 28, 20:30",
      "sede": "Belfius Hockey Arena, Wavre",
@@ -645,9 +678,9 @@
     },
     {
      "instancia": "Semifinal 2",
-     "a": "España",
-     "b": "Países Bajos",
-     "cuando": "Viernes 28, 18:00 (a confirmar)",
+     "a": "Países Bajos",
+     "b": "España",
+     "cuando": "Viernes 28, 18:00",
      "sede": "Wagener Stadium, Amstelveen"
     }
    ]
