@@ -34,7 +34,7 @@
    "title": "Los Leones 7 · Nueva Zelanda 1",
    "score": "Hat-trick de Domene. Argentina clasificó a la segunda fase",
    "note": "Visto por TV desde Laredo",
-   "foto": "fotos/leones-nz.jpg"
+   "foto": "leones-nz.jpg"
   },
   {
    "d": "2026-08-20",
@@ -44,7 +44,7 @@
    "spot": "Laredo",
    "title": "Llegada al alojamiento",
    "note": "La Arenosa, Laredo. Llovió todo el día",
-   "foto": "fotos/laredo-lluvia.jpg"
+   "foto": "laredo-lluvia.jpg"
   },
   {
    "d": "2026-08-21",
@@ -56,7 +56,7 @@
    "spot": "Bilbao",
    "title": "Laredo → Bilbao",
    "note": "Bus de las 10:10, 50 minutos por la costa. Llegada al Termibus",
-   "foto": "fotos/bus-laredo.jpg",
+   "foto": "bus-laredo.jpg",
    "pie": ""
   },
   {
@@ -67,7 +67,7 @@
    "spot": "Bilbao",
    "title": "Estadio San Mamés",
    "note": "La Catedral del Athletic, justo al lado de la estación. Primera parada sin buscarla",
-   "foto": "fotos/san-mames.jpg",
+   "foto": "san-mames.jpg",
    "pie": ""
   },
   {
@@ -78,7 +78,7 @@
    "spot": "Bilbao",
    "title": "Museo Guggenheim",
    "note": "El titanio de Gehry sobre la ría. Afuera, Puppy y la araña de Louise Bourgeois. Adentro, La materia del tiempo de Richard Serra",
-   "foto": "fotos/guggenheim.jpg",
+   "foto": "guggenheim.jpg",
    "pie": ""
   },
   {
@@ -89,7 +89,7 @@
    "spot": "Bilbao",
    "title": "Caminata por la ría",
    "note": "Del Guggenheim al Casco Viejo bordeando el agua, pasando por el puente Zubizuri y el Ayuntamiento",
-   "foto": "fotos/ria.jpg",
+   "foto": "ria.jpg",
    "pie": ""
   },
   {
@@ -101,7 +101,7 @@
    "title": "★ Casco Viejo en vísperas de la Aste Nagusia",
    "score": "La Semana Grande de Bilbao arranca mañana: nueve días, 240 actos",
    "note": "Toda la ciudad montando las txosnas y los escenarios. Marijaia sale al balcón del Arriaga mañana a las 19:00. Pintxos en la Plaza Nueva con el clima de fiesta armado pero sin el gentío",
-   "foto": "fotos/casco-viejo.jpg",
+   "foto": "casco-viejo.jpg",
    "pie": ""
   },
   {
@@ -121,13 +121,13 @@
    "spot": "Laredo",
    "title": "Bici por el paseo marítimo",
    "note": "Playa de La Salvé hasta El Puntal, unos 12 km llanos. Y al volver, la bahía entera desde arriba con el monte Buciero enfrente y una cerveza mirando el atardecer",
-   "foto": "fotos/laredo-bici.jpg",
+   "foto": "laredo-bici.jpg",
    "pie": "",
    "fotos": [
-    "fotos/laredo-vista.jpg",
-    "fotos/laredo-atardecer.jpg",
-    "fotos/laredo-anochecer.jpg",
-    "fotos/laredo-cerveza.jpg"
+    "laredo-vista.jpg",
+    "laredo-atardecer.jpg",
+    "laredo-anochecer.jpg",
+    "laredo-cerveza.jpg"
    ]
   },
   {
@@ -194,8 +194,8 @@
    "title": "La odisea hasta Wavre",
    "note": "El bus TEC 125 no opera los sábados. Tren a Etterbeek, espera, tren a Ottignies y de ahí a Wavre. Tres horas y media de andenes, pero llegó a tiempo para todo",
    "fotos": [
-    "fotos/wavre-ingreso.jpg",
-    "fotos/wavre-palos.jpg"
+    "wavre-ingreso.jpg",
+    "wavre-palos.jpg"
    ]
   },
   {
@@ -209,8 +209,8 @@
    "score": "Otro hat-trick de Domene, el segundo del Mundial",
    "note": "Se jugaba en Amstelveen y lo vio en la pantalla gigante del estadio de Wavre, ya adentro",
    "fotos": [
-    "fotos/wavre-pantalla.jpg",
-    "fotos/wavre-fanzone.jpg"
+    "wavre-pantalla.jpg",
+    "wavre-fanzone.jpg"
    ]
   },
   {
@@ -224,10 +224,10 @@
    "score": "Clasificadas a la SEMIFINAL",
    "note": "En el Belfius Hockey Arena de Wavre. El partido por el que armó todo el viaje",
    "fotos": [
-    "fotos/wavre-precalentamiento.jpg",
-    "fotos/leonas-hinchada.jpg",
-    "fotos/leonas-festejo.jpg",
-    "fotos/wavre-noche.jpg"
+    "wavre-precalentamiento.jpg",
+    "leonas-hinchada.jpg",
+    "leonas-festejo.jpg",
+    "wavre-noche.jpg"
    ]
   },
   {
@@ -259,13 +259,13 @@
    "title": "El mercado del domingo",
    "note": "Panadería de pueblo, quesos de granja, un chocolatero en una Citroën vieja, café tostado ahí mismo y un puesto de golosinas. Domingo belga como corresponde",
    "fotos": [
-    "fotos/mercado-panaderia.jpg",
-    "fotos/mercado-quesos.jpg",
-    "fotos/mercado-chocolate.jpg",
-    "fotos/mercado-chocolatero.jpg",
-    "fotos/mercado-cafe.jpg",
-    "fotos/mercado-italiano.jpg",
-    "fotos/mercado-golosinas.jpg"
+    "mercado-panaderia.jpg",
+    "mercado-quesos.jpg",
+    "mercado-chocolate.jpg",
+    "mercado-chocolatero.jpg",
+    "mercado-cafe.jpg",
+    "mercado-italiano.jpg",
+    "mercado-golosinas.jpg"
    ]
   },
   {
@@ -377,9 +377,9 @@
    "title": "★ Zandvoort, el mar del Norte",
    "note": "Playa ancha, olas de verdad y los molinos eólicos en el horizonte. El día salió espectacular y el atardecer sobre el agua se estiró hasta las nueve",
    "fotos": [
-    "fotos/zandvoort-sol.jpg",
-    "fotos/zandvoort-atardecer.jpg",
-    "fotos/zandvoort-fer.jpg"
+    "zandvoort-sol.jpg",
+    "zandvoort-atardecer.jpg",
+    "zandvoort-fer.jpg"
    ]
   },
   {
