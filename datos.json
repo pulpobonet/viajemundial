@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "Entradas confirmadas para la final del domingo en Wavre. Mañana, la semifinal: Alemania vs. Argentina.",
-  "hora": "13:00"
+  "texto": "Las Leonas a la final del sábado contra Países Bajos. Los Leones perdieron 2-1 con Alemania y van por el bronce el domingo.",
+  "hora": "10:00"
  },
  "eventos": [
   {
@@ -409,8 +409,9 @@
    "zone": "ams",
    "spot": "Ámsterdam",
    "match": true,
-   "title": "★ Argentina vs. Australia, por TV",
-   "note": "Semifinal de Las Leonas, en Wavre. Si ganan, el sábado juegan la final en el Wagener y papá está ahí"
+   "title": "★ ¡LAS LEONAS A LA FINAL!",
+   "note": "Semifinal en Wavre, vista por TV. Se repite la final del Mundial pasado",
+   "score": "Le ganaron a Australia y el sábado juegan contra Países Bajos"
   },
   {
    "d": "2026-08-28",
@@ -458,8 +459,9 @@
    "zone": "belgica",
    "spot": "Wavre",
    "match": true,
-   "title": "★ ALEMANIA vs. ARGENTINA",
-   "note": "SEMIFINAL del Mundial, en el Belfius Hockey Arena de Wavre. Alemania es el campeón defensor. Domene llega como goleador del torneo, con ocho"
+   "title": "★ Alemania 2 · Argentina 1",
+   "note": "En el Belfius de Wavre. Weigand abrió en el tercer cuarto, Domene empató apenas empezado el último y Kaufmann definió a seis minutos del final, con Lucio Méndez afuera por amarilla. Gol polémico, reclamado por juego peligroso",
+   "score": "Semifinal. Domene empató de córner corto, pero Alemania ganó sobre el final"
   },
   {
    "d": "2026-08-28",
@@ -479,8 +481,8 @@
    "zone": "ams",
    "spot": "Amstelveen",
    "match": true,
-   "title": "★ FINAL FEMENINA",
-   "note": "Wagener Stadium. Entrada comprada. A las 13:00 se juega el tercer puesto"
+   "title": "★ FINAL: Argentina vs. Países Bajos",
+   "note": "Wagener Stadium, 16:00. Revancha de la final del Mundial pasado. Entrada comprada"
   },
   {
    "d": "2026-08-29",
@@ -509,8 +511,8 @@
    "zone": "belgica",
    "spot": "Wavre",
    "match": true,
-   "title": "Tercer y cuarto puesto",
-   "note": "Belfius Hockey Arena. Entra con la misma entrada del día"
+   "title": "★ ARGENTINA vs. PAÍSES BAJOS",
+   "note": "Por la medalla de bronce. Los Leones buscan repetir su mejor resultado histórico, el tercer puesto de La Haya 2014"
   },
   {
    "d": "2026-08-30",
@@ -519,8 +521,8 @@
    "zone": "belgica",
    "spot": "Wavre",
    "match": true,
-   "title": "★ LA FINAL DEL MUNDIAL",
-   "note": "El último partido del torneo, en el Belfius Hockey Arena de Wavre. Entrada comprada"
+   "title": "★ LA FINAL: Alemania vs. España",
+   "note": "Alemania defiende el título de 2023. España dio el golpe al ganarle 4-3 a Países Bajos en la otra semi"
   },
   {
    "d": "2026-08-30",
@@ -680,7 +682,7 @@
  ],
  "cruces": [
   {
-   "titulo": "Semifinales femeninas · jueves 27",
+   "titulo": "Semifinales femeninas · jugadas",
    "partidos": [
     {
      "instancia": "Semifinal 1",
@@ -701,7 +703,7 @@
    ]
   },
   {
-   "titulo": "Semifinales masculinas · viernes 28",
+   "titulo": "Semifinales masculinas · jugadas",
    "partidos": [
     {
      "instancia": "Semifinal 1",
@@ -710,7 +712,8 @@
      "arg": true,
      "cuando": "Viernes 28, 20:30",
      "sede": "Belfius Hockey Arena, Wavre",
-     "vas": "Papá va a estar ahí"
+     "vas": "Papá va a estar ahí",
+     "resultado": "Alemania 2 · Argentina 1"
     },
     {
      "instancia": "Semifinal 2",
@@ -726,17 +729,26 @@
    "partidos": [
     {
      "instancia": "Final femenina",
-     "a": "Por definirse",
-     "b": "Por definirse",
+     "a": "Argentina",
+     "b": "Países Bajos",
      "arg": true,
      "cuando": "Sábado 29, 16:00",
      "sede": "Wagener Stadium, Amstelveen",
      "vas": "Papá va a estar ahí"
     },
     {
+     "instancia": "Bronce masculino",
+     "a": "Argentina",
+     "b": "Países Bajos",
+     "arg": true,
+     "cuando": "Domingo 30, 14:00",
+     "sede": "Belfius Hockey Arena, Wavre",
+     "vas": "Papá va a estar ahí"
+    },
+    {
      "instancia": "Final masculina",
-     "a": "Por definirse",
-     "b": "Por definirse",
+     "a": "Alemania",
+     "b": "España",
      "cuando": "Domingo 30, 16:30",
      "sede": "Belfius Hockey Arena, Wavre",
      "vas": "Papá va a estar ahí"
