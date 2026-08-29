@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La cuenta · Gastos del viaje</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  /* ── Papel de libro contable: verde pálido con barras alternadas ── */
+  :root{
+    --papel:#eef3ea;
+    --barra:#dde8d6;
+    --linea:#a9bfa0;
+    --linea-fuerte:#7d9873;
+    --tinta:#16241b;
+    --tinta-2:#4a6152;
+    --debe:#a3261f;
+    --haber:#1d6b3f;
+    --sello:#a3261f;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--papel);color:var(--tinta);
+    font-family:'IBM Plex Mono',monospace;
+    -webkit-font-smoothing:antialiased;line-height:1.5;padding-bottom:5rem;
+  }
+  .wrap{max-width:640px;margin:0 auto;padding:0 1rem}
+
+  /* ── Cabecera ── */
+  header{padding:1.5rem 0 1rem;border-bottom:3px double var(--linea-fuerte);margin-bottom:1.4rem}
+  .eyebrow{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--tinta-2)}
+  h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(2rem,9vw,2.8rem);
+    font-weight:700;letter-spacing:-.02em;line-height:1;margin:.25rem 0 .5rem}
+  .quienes{font-size:.8rem;color:var(--tinta-2)}
+
+  h2{font-family:'Space Grotesk',sans-serif;font-size:.72rem;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase;color:var(--tinta-2);
+    margin:1.8rem 0 .7rem}
+  h2:first-of-type{margin-top:0}
+
+  .tabs{display:flex;gap:0;border:1px solid var(--linea-fuerte);margin-bottom:1.4rem}
+  .tabs button{flex:1;margin:0;padding:.8rem .4rem;background:transparent;color:var(--tinta-2);
+    border:0;border-right:1px solid var(--linea-fuerte);font-size:.72rem;width:auto}
+  .tabs button:last-child{border-right:0}
+  .tabs button[aria-selected="true"]{background:var(--tinta);color:var(--papel)}
+  .tabs button:hover:not([aria-selected="true"]){background:var(--barra)}
+  .panel[hidden]{display:none}
+
+  .check{grid-column:1/-1;display:flex;align-items:flex-start;gap:.65rem;
+    border:1px solid var(--linea);background:var(--papel);padding:.7rem .8rem;cursor:pointer}
+  .check input{width:22px;height:22px;flex:none;margin-top:.1rem;accent-color:var(--tinta)}
+  .check .txt{font-size:.86rem;line-height:1.4;text-transform:none;letter-spacing:0;
+    color:var(--tinta)}
+  .check .txt b{font-family:'Space Grotesk',sans-serif;display:block;font-size:.95rem;
+    letter-spacing:0;text-transform:none;margin-bottom:.1rem}
+  .check .txt span{color:var(--tinta-2);font-size:.76rem;text-transform:none;letter-spacing:0}
+
+  /* ── Bloque del total ── */
+  .total{border:2px solid var(--tinta);padding:.9rem 1rem;display:flex;
+    align-items:baseline;justify-content:space-between;gap:.75rem;flex-wrap:wrap}
+  .total>div{flex:1 1 55%;min-width:0}
+  .total .rot{font-family:'Space Grotesk',sans-serif;font-size:.7rem;font-weight:700;
+    letter-spacing:.18em;text-transform:uppercase}
+  .total .cifra{font-size:clamp(1.5rem,7vw,2rem);font-weight:700;
+    font-variant-numeric:tabular-nums;white-space:nowrap}
+  .total .sub{font-size:.72rem;color:var(--tinta-2);margin-top:.35rem}
+
+  /* ── Saldos por persona ── */
+  .saldos{border:1px solid var(--linea)}
+  .fila{display:grid;grid-template-columns:1fr auto auto;gap:.6rem;
+    padding:.6rem .8rem;align-items:baseline;font-variant-numeric:tabular-nums}
+  .fila:nth-child(odd){background:var(--barra)}
+  .fila .qui{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.95rem}
+  .fila .det{font-size:.7rem;color:var(--tinta-2);white-space:nowrap}
+  .fila .sal{font-weight:700;font-size:1.05rem;min-width:6.5rem;text-align:right}
+  .sal.debe{color:var(--debe)}
+  .sal.haber{color:var(--haber)}
+  .cab{display:grid;grid-template-columns:1fr auto auto;gap:.6rem;padding:.45rem .8rem;
+    font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2);
+    border-bottom:1px solid var(--linea)}
+  .cab span:last-child{min-width:6.5rem;text-align:right}
+
+  /* ── Sello de cómo saldar ── */
+  .sello{border:2px solid var(--sello);padding:.9rem 1rem;margin-top:.9rem;
+    background:rgba(163,38,31,.05)}
+  .sello .rot{font-family:'Space Grotesk',sans-serif;font-size:.68rem;font-weight:700;
+    letter-spacing:.2em;text-transform:uppercase;color:var(--sello);margin-bottom:.5rem}
+  .pago{display:flex;justify-content:space-between;gap:.8rem;align-items:baseline;
+    padding:.28rem 0;font-size:.95rem}
+  .pago b{font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .pago .quien{font-family:'Space Grotesk',sans-serif;font-weight:500}
+
+  /* ── Formulario ── */
+  form{border:1px solid var(--linea);background:#fff;padding:1rem}
+  .campos{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+  .campo{display:flex;flex-direction:column;gap:.2rem}
+  .campo.ancho{grid-column:1/-1}
+  label{font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta-2)}
+  input,select{font-family:'IBM Plex Mono',monospace;font-size:1rem;color:var(--tinta);
+    background:var(--papel);border:1px solid var(--linea);padding:.55rem .6rem;
+    border-radius:0;width:100%}
+  input:focus,select:focus{outline:2px solid var(--linea-fuerte);outline-offset:-1px}
+  button{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:.82rem;
+    letter-spacing:.12em;text-transform:uppercase;color:var(--papel);background:var(--tinta);
+    border:0;padding:.75rem 1rem;width:100%;margin-top:.75rem;cursor:pointer}
+  button:disabled{opacity:.45;cursor:default}
+  button:hover:not(:disabled){background:#0c1610}
+
+  /* ── Lista de gastos ── */
+  .gasto{display:grid;grid-template-columns:auto 1fr auto auto;gap:.55rem;
+    align-items:baseline;padding:.5rem .8rem;font-size:.86rem}
+  .gasto:nth-child(odd){background:var(--barra)}
+  .gasto .fec{font-size:.64rem;color:var(--tinta-2);white-space:nowrap}
+  .gasto .con{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .gasto .con em{font-style:normal;color:var(--tinta-2);font-size:.72rem}
+  .gasto .imp{font-weight:600;font-variant-numeric:tabular-nums;white-space:nowrap}
+  .gasto .x{background:none;border:0;color:var(--tinta-2);font-size:1rem;cursor:pointer;
+    padding:0 .2rem;width:auto;margin:0;letter-spacing:0}
+  .gasto .x:hover{color:var(--debe);background:none}
+  .lista{border:1px solid var(--linea)}
+
+  .aviso{border:1px dashed var(--linea-fuerte);padding:.9rem 1rem;font-size:.85rem;
+    color:var(--tinta-2);line-height:1.6}
+  .aviso b{color:var(--tinta)}
+  .estado{font-size:.75rem;color:var(--tinta-2);margin-top:.5rem;min-height:1.2em}
+  .estado.mal{color:var(--debe)}
+  footer{margin-top:2rem;padding-top:1rem;border-top:1px solid var(--linea);
+    font-size:.7rem;color:var(--tinta-2);line-height:1.6}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <p class="eyebrow">Mundial de Hockey 2026</p>
+    <h1>La cuenta</h1>
+    <p class="quienes">Fernando · Pato · Tero &nbsp;—&nbsp; todo en euros</p>
+  </header>
+
+  <div id="sinConfig" class="aviso" hidden>
+    <b>Falta conectar la planilla.</b><br>
+    Abrí este archivo y pegá la dirección que te dio Apps Script en la línea
+    <code>const API</code>, arriba de todo del bloque de código.
+  </div>
+
+  <nav class="tabs" role="tablist">
+    <button role="tab" id="tab-cargar"  aria-controls="p-cargar"  aria-selected="true">Anotar un gasto</button>
+    <button role="tab" id="tab-numeros" aria-controls="p-numeros" aria-selected="false">Cómo vienen</button>
+  </nav>
+
+  <div class="panel" id="p-cargar" role="tabpanel" aria-labelledby="tab-cargar">
+  <form id="form">
+    <div class="campos">
+      <div class="campo">
+        <label for="fecha">Fecha</label>
+        <input type="date" id="fecha" required>
+      </div>
+      <div class="campo">
+        <label for="hora">Hora</label>
+        <input type="time" id="hora" required>
+      </div>
+      <div class="campo ancho">
+        <label for="concepto">Qué fue</label>
+        <input type="text" id="concepto" placeholder="Nafta, entradas, cena…" maxlength="60">
+      </div>
+      <div class="campo">
+        <label for="importe">Importe €</label>
+        <input type="number" id="importe" step="0.01" min="0" inputmode="decimal" required>
+      </div>
+      <div class="campo">
+        <label for="pago">Pagó</label>
+        <select id="pago" required>
+          <option value="Fernando">Fernando</option>
+          <option value="Pato">Pato</option>
+          <option value="Tero">Tero</option>
+        </select>
+      </div>
+      <label class="check" for="solodos">
+        <input type="checkbox" id="solodos">
+        <span class="txt"><b>Sin Tero</b>
+        <span>Marcalo si el gasto va solo entre Fernando y Pato. Si no, se divide entre los tres.</span></span>
+      </label>
+    </div>
+    <button type="submit" id="btn">Anotar</button>
+    <p class="estado" id="estado"></p>
+  </form>
+  </div>
+
+  <div class="panel" id="p-numeros" role="tabpanel" aria-labelledby="tab-numeros" hidden>
+  <div class="total">
+    <div>
+      <p class="rot">Gastado hasta ahora</p>
+      <p class="sub" id="desglose">—</p>
+    </div>
+    <p class="cifra" id="total">—</p>
+  </div>
+
+  <h2>Cómo viene cada uno</h2>
+  <div class="saldos">
+    <div class="cab"><span>Quién</span><span>Puso / le tocaba</span><span>Saldo</span></div>
+    <div id="saldos"></div>
+  </div>
+
+  <div class="sello" id="sello" hidden>
+    <p class="rot">Para quedar a mano</p>
+    <div id="saldar"></div>
+  </div>
+
+  <h2>Lo anotado</h2>
+  <div class="lista" id="lista"></div>
+  </div>
+
+  <footer>
+    Los datos viven en la planilla de Google. Lo que anotes acá aparece allá, y lo que
+    carguen en la planilla aparece acá. Se refresca solo cada dos minutos.
+  </footer>
+</div>
+
+<script>
+// ─────────── Pegá acá la dirección que te dio Apps Script ───────────
+const API = "";
+// ────────────────────────────────────────────────────────────────────
+
+const PERSONAS = ["Fernando", "Pato", "Tero"];
+let GASTOS = [];
+
+const eur = n => n.toLocaleString("es-AR", {minimumFractionDigits:2, maximumFractionDigits:2}) + " €";
+const $ = id => document.getElementById(id);
+
+function calcular(){
+  const puso = {Fernando:0, Pato:0, Tero:0};
+  const toca = {Fernando:0, Pato:0, Tero:0};
+  let total = 0, por2 = 0, por3 = 0;
+
+  for (const g of GASTOS){
+    total += g.importe;
+    if (puso[g.pago] !== undefined) puso[g.pago] += g.importe;
+    if (g.entre === 2){
+      por2 += g.importe;
+      toca.Fernando += g.importe/2;
+      toca.Pato     += g.importe/2;
+    } else {
+      por3 += g.importe;
+      for (const p of PERSONAS) toca[p] += g.importe/3;
+    }
+  }
+  const saldo = {};
+  for (const p of PERSONAS) saldo[p] = puso[p] - toca[p];
+  return {puso, toca, saldo, total, por2, por3};
+}
+
+/** Con tres personas alcanzan dos transferencias. */
+function saldar(saldo){
+  const s = PERSONAS.map(p => ({p, v: saldo[p]}));
+  const mov = [];
+  for (let k = 0; k < 2; k++){
+    s.sort((a,b) => a.v - b.v);
+    const deudor = s[0], acreedor = s[s.length-1];
+    const monto = Math.min(-deudor.v, acreedor.v);
+    if (monto < 0.005) break;
+    mov.push({de: deudor.p, a: acreedor.p, monto});
+    deudor.v += monto; acreedor.v -= monto;
+  }
+  return mov;
+}
+
+function pintar(){
+  const c = calcular();
+  $("total").textContent = eur(c.total);
+  $("desglose").textContent = GASTOS.length
+    ? `${GASTOS.length} gasto${GASTOS.length===1?"":"s"} · ${eur(c.por2)} entre dos · ${eur(c.por3)} entre tres`
+    : "Todavía no hay nada anotado";
+
+  $("saldos").innerHTML = PERSONAS.map(p => {
+    const v = c.saldo[p];
+    const clase = v < -0.005 ? "debe" : v > 0.005 ? "haber" : "";
+    const signo = v > 0.005 ? "+" : "";
+    return `<div class="fila">
+      <span class="qui">${p}</span>
+      <span class="det">${eur(c.puso[p])} / ${eur(c.toca[p])}</span>
+      <span class="sal ${clase}">${signo}${eur(v)}</span>
+    </div>`;
+  }).join("");
+
+  const mov = saldar(c.saldo);
+  $("sello").hidden = mov.length === 0;
+  $("saldar").innerHTML = mov.length
+    ? mov.map(m => `<div class="pago">
+        <span class="quien">${m.de} → ${m.a}</span><b>${eur(m.monto)}</b></div>`).join("")
+    : "";
+
+  const orden = [...GASTOS].sort((a,b) =>
+    ((b.fecha||"")+(b.hora||"")).localeCompare((a.fecha||"")+(a.hora||"")));
+  $("lista").innerHTML = GASTOS.length
+    ? orden.map(g => `<div class="gasto">
+        <span class="fec">${(g.fecha||"").slice(5).replace("-","/")}${g.hora?" "+g.hora:""}</span>
+        <span class="con">${g.concepto || "Sin detalle"} <em>· ${g.pago}${g.entre===2?" · entre dos":""}</em></span>
+        <span class="imp">${eur(g.importe)}</span>
+        <button class="x" data-fila="${g.fila}" title="Borrar">×</button>
+      </div>`).join("")
+    : `<div class="gasto"><span class="con" style="color:var(--tinta-2)">Nada anotado todavía.</span></div>`;
+}
+
+async function traer(){
+  if (!API){ $("sinConfig").hidden = false; pintar(); return; }
+  try{
+    const r = await fetch(API + "?t=" + Date.now());
+    const d = await r.json();
+    if (d.ok){ GASTOS = d.gastos; pintar(); }
+    else estado("La planilla contestó con un error: " + d.error, true);
+  }catch(e){
+    estado("No se pudo leer la planilla. Revisá la conexión.", true);
+  }
+}
+
+async function enviar(cuerpo){
+  // text/plain evita el preflight, que Apps Script no responde
+  const r = await fetch(API, {
+    method: "POST",
+    headers: {"Content-Type": "text/plain;charset=utf-8"},
+    body: JSON.stringify(cuerpo)
+  });
+  return r.json();
+}
+
+function estado(txt, mal){
+  const e = $("estado");
+  e.textContent = txt || "";
+  e.classList.toggle("mal", !!mal);
+}
+
+$("form").addEventListener("submit", async ev => {
+  ev.preventDefault();
+  if (!API){ estado("Falta conectar la planilla.", true); return; }
+  const cuerpo = {
+    accion: "agregar",
+    fecha: $("fecha").value,
+    pago: $("pago").value,
+    concepto: $("concepto").value.trim(),
+    hora: $("hora").value,
+    importe: parseFloat($("importe").value),
+    entre: $("solodos").checked ? 2 : 3
+  };
+  $("btn").disabled = true; estado("Anotando…");
+  try{
+    const d = await enviar(cuerpo);
+    if (d.ok){
+      $("concepto").value = ""; $("importe").value = ""; $("solodos").checked = false;
+      ponerAhora();
+      estado("Anotado.");
+      await traer();
+    } else estado(d.error || "No se pudo anotar.", true);
+  }catch(e){ estado("No se pudo anotar. Probá de nuevo.", true); }
+  $("btn").disabled = false;
+});
+
+$("lista").addEventListener("click", async ev => {
+  const b = ev.target.closest("button[data-fila]");
+  if (!b) return;
+  if (!confirm("¿Borrar este gasto?")) return;
+  b.disabled = true;
+  try{
+    const d = await enviar({accion:"borrar", fila: b.dataset.fila});
+    if (d.ok) await traer(); else estado(d.error || "No se pudo borrar.", true);
+  }catch(e){ estado("No se pudo borrar.", true); }
+});
+
+function ponerAhora(){
+  const d = new Date();
+  const p = n => String(n).padStart(2,"0");
+  $("fecha").value = `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+  $("hora").value  = `${p(d.getHours())}:${p(d.getMinutes())}`;
+}
+ponerAhora();
+
+document.querySelectorAll('.tabs button').forEach(b => {
+  b.addEventListener("click", () => {
+    document.querySelectorAll('.tabs button').forEach(o => {
+      const on = (o === b);
+      o.setAttribute("aria-selected", on);
+      document.getElementById(o.getAttribute("aria-controls")).hidden = !on;
+    });
+    window.scrollTo({top:0, behavior:"smooth"});
+  });
+});
+
+traer();
+setInterval(traer, 120000);
+</script>
+</body>
+</html>
