@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "Las Leonas campeonas del mundo, Los Leones medalla de bronce, y Domene elegido el mejor jugador del Mundial. Papá estuvo en los dos podios.",
-  "hora": "19:00"
+  "texto": "Último día en Madrid: outlets, descanso y armar las valijas. Mañana el vuelo a casa.",
+  "hora": "11:00"
  },
  "eventos": [
   {
@@ -550,39 +550,73 @@
    "t": "04:20",
    "dur": 80,
    "day": "Lunes 31",
-   "place": "Vuelta a Madrid",
+   "place": "Países Bajos → Madrid",
    "zone": "ams",
    "spot": "Schiphol",
-   "title": "Se levanta de madrugada",
-   "note": "El alojamiento está a diez minutos de Schiphol, así que se puede dormir un rato más de lo previsto. En el aeropuerto 05:15"
+   "title": "Alarma y salida",
+   "note": "Devolución del auto en Schiphol con el tanque lleno, y de ahí caminando a la terminal"
   },
   {
    "d": "2026-08-31",
    "t": "07:20",
    "dur": 130,
    "zone": "vuelo",
-   "title": "Vuelo a Madrid",
-   "note": "Iberia. Llega 9:30 a Barajas"
+   "title": "Schiphol → Madrid",
+   "note": "Iberia, Terminal 1A. Pato sale a las 07:00 con KLM desde la Terminal 2 y llega a Madrid T2"
   },
   {
    "d": "2026-08-31",
    "t": "11:00",
-   "dur": 600,
+   "dur": 300,
    "zone": "madrid",
    "spot": "Madrid",
-   "title": "Día de descanso en Madrid",
-   "note": "En casa de Pato"
+   "title": "Outlets cerca de lo de Pato",
+   "note": "Compras en los outlets del oeste de Madrid, a un rato de Prado Norte"
+  },
+  {
+   "d": "2026-08-31",
+   "t": "17:00",
+   "dur": 300,
+   "zone": "madrid",
+   "spot": "Madrid",
+   "title": "Descansar y armar las valijas",
+   "note": "Última noche en lo de Pato. Trece días de viaje entran en una mochila y un carry-on"
   },
   {
    "d": "2026-09-01",
-   "t": "10:55",
-   "dur": 800,
+   "t": "07:55",
+   "dur": 180,
    "day": "Martes 1° de septiembre",
    "place": "Vuelve a casa",
    "zone": "madrid",
    "spot": "Barajas",
-   "title": "Despega a Buenos Aires",
-   "note": "El vuelo más esperado"
+   "title": "En Barajas",
+   "note": "Tres horas antes del vuelo. Verificar la terminal: si es T4, sumar 20 minutos porque está separada del resto"
+  },
+  {
+   "d": "2026-09-01",
+   "t": "10:55",
+   "dur": 760,
+   "zone": "vuelo",
+   "title": "✈ Madrid → Buenos Aires",
+   "note": "Unas 12 horas y media de vuelo. Con las 5 horas de diferencia, aterriza cerca de las 18:35 en Ezeiza"
+  },
+  {
+   "d": "2026-09-01",
+   "t": "18:35",
+   "dur": 70,
+   "zone": "madrid",
+   "title": "★ Llega a Ezeiza",
+   "score": "Después de trece días, dos podios y una vuelta olímpica",
+   "note": "Migraciones, valijas y aduana: alrededor de una hora"
+  },
+  {
+   "d": "2026-09-01",
+   "t": "20:45",
+   "dur": 60,
+   "zone": "madrid",
+   "title": "★★ EN CASA",
+   "note": "Con Manuel e Isabel. Fin del viaje"
   }
  ],
  "posiciones": [
