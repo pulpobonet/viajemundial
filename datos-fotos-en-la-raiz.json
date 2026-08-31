@@ -1,7 +1,7 @@
 {
  "novedad": {
-  "texto": "Las Leonas a la final del sábado contra Países Bajos. Los Leones perdieron 2-1 con Alemania y van por el bronce el domingo.",
-  "hora": "10:00"
+  "texto": "Las Leonas campeonas del mundo, Los Leones medalla de bronce, y Domene elegido el mejor jugador del Mundial. Papá estuvo en los dos podios.",
+  "hora": "19:00"
  },
  "eventos": [
   {
@@ -481,8 +481,9 @@
    "zone": "ams",
    "spot": "Amstelveen",
    "match": true,
-   "title": "★ FINAL: Argentina vs. Países Bajos",
-   "note": "Wagener Stadium, 16:00. Revancha de la final del Mundial pasado. Entrada comprada"
+   "title": "★★ ¡LAS LEONAS, CAMPEONAS DEL MUNDO!",
+   "note": "Wagener Stadium, Amstelveen. Papá estuvo ahí, en la tribuna, el día que Argentina volvió a ser campeona del mundo",
+   "score": "Le ganaron la final a Países Bajos por penales, en su propia casa"
   },
   {
    "d": "2026-08-29",
@@ -511,8 +512,9 @@
    "zone": "belgica",
    "spot": "Wavre",
    "match": true,
-   "title": "★ ARGENTINA vs. PAÍSES BAJOS",
-   "note": "Por la medalla de bronce. Los Leones buscan repetir su mejor resultado histórico, el tercer puesto de La Haya 2014"
+   "title": "★ Argentina 2 · Países Bajos 1",
+   "note": "Belfius Hockey Arena, Wavre. Domene abrió en el tercer cuarto con asistencia de Zárate, y Matías Rey, el capitán de 41 años, metió el segundo de córner corto en su sexto Mundial. Es la segunda vez en la historia que Los Leones suben al podio, después de La Haya 2014. Tomás Domene cerró el torneo con 10 goles, máximo goleador, y fue elegido MEJOR JUGADOR DEL MUNDIAL",
+   "score": "MEDALLA DE BRONCE. Argentina, tercera del mundo"
   },
   {
    "d": "2026-08-30",
@@ -521,8 +523,9 @@
    "zone": "belgica",
    "spot": "Wavre",
    "match": true,
-   "title": "★ LA FINAL: Alemania vs. España",
-   "note": "Alemania defiende el título de 2023. España dio el golpe al ganarle 4-3 a Países Bajos en la otra semi"
+   "title": "La final: Alemania 1 · España 0",
+   "note": "Gol de Michel Struthoff en el minuto 44, ante unos 10.000 espectadores. España jugó su tercera final histórica y se llevó la plata",
+   "score": "Alemania bicampeona, iguala a Pakistán con cuatro títulos"
   },
   {
    "d": "2026-08-30",
@@ -531,7 +534,7 @@
    "zone": "belgica",
    "spot": "Waterloo",
    "title": "Vuelta a Badhoevedorp",
-   "note": "Llegando cerca de las nueve de la noche"
+   "note": "En auto, con dos medallas argentinas en dos días"
   },
   {
    "d": "2026-08-30",
@@ -584,174 +587,116 @@
  ],
  "posiciones": [
   {
-   "titulo": "Grupo E · Masculino",
-   "sede": "Wagener Stadium, Amstelveen · grupo terminado",
+   "titulo": "Podio femenino",
+   "sede": "Mundial de Hockey 2026 · Bélgica y Países Bajos",
    "filas": [
     {
-     "eq": "Países Bajos",
-     "pts": 7,
-     "pj": 3,
-     "g": 2,
-     "e": 1,
-     "p": 0,
-     "gf": 8,
-     "gc": 4
-    },
-    {
-     "eq": "Argentina",
-     "pts": 6,
-     "pj": 3,
-     "g": 2,
-     "e": 0,
-     "p": 1,
-     "gf": 9,
-     "gc": 7,
+     "eq": "🥇 ARGENTINA",
+     "pts": "Oro",
+     "pj": "",
+     "g": "",
+     "e": "",
+     "p": "",
+     "gf": "",
+     "gc": "",
      "arg": true
     },
     {
-     "eq": "Inglaterra",
-     "pts": 4,
-     "pj": 3,
-     "g": 1,
-     "e": 1,
-     "p": 1,
-     "gf": 7,
-     "gc": 7
-    },
-    {
-     "eq": "India",
-     "pts": 0,
-     "pj": 3,
-     "g": 0,
-     "e": 0,
-     "p": 3,
-     "gf": 6,
-     "gc": 12
+     "eq": "🥈 Países Bajos",
+     "pts": "Plata",
+     "pj": "",
+     "g": "",
+     "e": "",
+     "p": "",
+     "gf": "",
+     "gc": ""
     }
    ],
-   "pie": "LOS LEONES ESTÁN EN SEMIFINALES. Juegan el viernes 28 a las 20:30 en Wavre."
+   "pie": "Las Leonas ganaron la final por penales, de visitantes, en el Wagener. Su tercera estrella mundial."
   },
   {
-   "titulo": "Grupo F · Femenino",
-   "sede": "Belfius Hockey Arena, Wavre · fecha 1 jugada",
+   "titulo": "Podio masculino",
+   "sede": "Mundial de Hockey 2026 · Bélgica y Países Bajos",
    "filas": [
     {
-     "eq": "Argentina",
-     "pts": 6,
-     "pj": 2,
-     "g": 2,
-     "e": 0,
-     "p": 0,
-     "gf": 6,
-     "gc": 2,
+     "eq": "🥇 Alemania",
+     "pts": "Oro",
+     "pj": "",
+     "g": "",
+     "e": "",
+     "p": "",
+     "gf": "",
+     "gc": ""
+    },
+    {
+     "eq": "🥈 España",
+     "pts": "Plata",
+     "pj": "",
+     "g": "",
+     "e": "",
+     "p": "",
+     "gf": "",
+     "gc": ""
+    },
+    {
+     "eq": "🥉 ARGENTINA",
+     "pts": "Bronce",
+     "pj": "",
+     "g": "",
+     "e": "",
+     "p": "",
+     "gf": "",
+     "gc": "",
      "arg": true
     },
     {
-     "eq": "Bélgica",
-     "pts": 4,
-     "pj": 2,
-     "g": 1,
-     "e": 1,
-     "p": 0,
-     "gf": 4,
-     "gc": 2
-    },
-    {
-     "eq": "España",
-     "pts": 1,
-     "pj": 2,
-     "g": 0,
-     "e": 1,
-     "p": 1,
-     "gf": 1,
-     "gc": 4
-    },
-    {
-     "eq": "Alemania",
-     "pts": 0,
-     "pj": 2,
-     "g": 0,
-     "e": 0,
-     "p": 2,
-     "gf": 3,
-     "gc": 6
+     "eq": "4º Países Bajos",
+     "pts": "",
+     "pj": "",
+     "g": "",
+     "e": "",
+     "p": "",
+     "gf": "",
+     "gc": ""
     }
    ],
-   "pie": "Las Leonas ya están en semifinales, con una fecha de anticipación. Hoy cierran contra Bélgica a las 20:30 en Wavre."
+   "pie": "Tomás Domene fue elegido el MEJOR JUGADOR DEL MUNDIAL y terminó como máximo goleador con 10 tantos. Los Leones vuelven al podio doce años después de La Haya 2014."
   }
  ],
  "cruces": [
   {
-   "titulo": "Semifinales femeninas · jugadas",
+   "titulo": "Cómo terminó · Femenino",
    "partidos": [
     {
-     "instancia": "Semifinal 1",
-     "a": "Argentina",
-     "b": "Australia",
-     "arg": true,
-     "cuando": "Jueves 27, 20:30",
-     "sede": "Belfius Hockey Arena, Wavre",
-     "vas": "Se mira por TV"
-    },
-    {
-     "instancia": "Semifinal 2",
-     "a": "Países Bajos",
-     "b": "Bélgica",
-     "cuando": "Jueves 27, 18:00",
-     "sede": "Wagener Stadium, Amstelveen"
-    }
-   ]
-  },
-  {
-   "titulo": "Semifinales masculinas · jugadas",
-   "partidos": [
-    {
-     "instancia": "Semifinal 1",
-     "a": "Alemania",
-     "b": "Argentina",
-     "arg": true,
-     "cuando": "Viernes 28, 20:30",
-     "sede": "Belfius Hockey Arena, Wavre",
-     "vas": "Papá va a estar ahí",
-     "resultado": "Alemania 2 · Argentina 1"
-    },
-    {
-     "instancia": "Semifinal 2",
-     "a": "Países Bajos",
-     "b": "España",
-     "cuando": "Viernes 28, 18:00",
-     "sede": "Wagener Stadium, Amstelveen"
-    }
-   ]
-  },
-  {
-   "titulo": "Las finales",
-   "partidos": [
-    {
-     "instancia": "Final femenina",
-     "a": "Argentina",
+     "instancia": "Campeón del mundo",
+     "a": "ARGENTINA",
      "b": "Países Bajos",
      "arg": true,
-     "cuando": "Sábado 29, 16:00",
+     "cuando": "Sábado 29 · ganó por penales",
      "sede": "Wagener Stadium, Amstelveen",
-     "vas": "Papá va a estar ahí"
-    },
+     "vas": "Papá estuvo ahí"
+    }
+   ]
+  },
+  {
+   "titulo": "Cómo terminó · Masculino",
+   "partidos": [
     {
-     "instancia": "Bronce masculino",
-     "a": "Argentina",
-     "b": "Países Bajos",
-     "arg": true,
-     "cuando": "Domingo 30, 14:00",
-     "sede": "Belfius Hockey Arena, Wavre",
-     "vas": "Papá va a estar ahí"
-    },
-    {
-     "instancia": "Final masculina",
+     "instancia": "Campeón",
      "a": "Alemania",
      "b": "España",
-     "cuando": "Domingo 30, 16:30",
+     "cuando": "Domingo 30 · 1-0",
      "sede": "Belfius Hockey Arena, Wavre",
-     "vas": "Papá va a estar ahí"
+     "vas": "Papá estuvo ahí"
+    },
+    {
+     "instancia": "Medalla de bronce",
+     "a": "ARGENTINA",
+     "b": "Países Bajos",
+     "arg": true,
+     "cuando": "Domingo 30 · 2-1",
+     "sede": "Belfius Hockey Arena, Wavre",
+     "vas": "Papá estuvo ahí"
     }
    ]
   }
